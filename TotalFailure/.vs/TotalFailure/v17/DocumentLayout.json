@@ -1,10 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\rosti\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\project\\Total-Failure\\TotalFailure\\",
+  "WorkspaceRootPath": "D:\\Total-failure\\Total-Failure\\TotalFailure\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|c:\\users\\rosti\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\project\\total-failure\\totalfailure\\assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\playermovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|d:\\total-failure\\total-failure\\totalfailure\\assets\\scripts\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,15 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PlayerMovement.cs",
-              "DocumentMoniker": "C:\\Users\\rosti\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\project\\Total-Failure\\TotalFailure\\Assets\\Scripts\\PlayerMovement.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerMovement.cs",
-              "ToolTip": "C:\\Users\\rosti\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\project\\Total-Failure\\TotalFailure\\Assets\\Scripts\\PlayerMovement.cs",
-              "RelativeToolTip": "Assets\\Scripts\\PlayerMovement.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAAxwB8AAAAAAAAAAAAAAA==",
+              "Title": "SceneManagerScript.cs",
+              "DocumentMoniker": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\SceneManagerScript.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\SceneManagerScript.cs",
+              "ToolTip": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\SceneManagerScript.cs",
+              "RelativeToolTip": "Assets\\Scripts\\SceneManagerScript.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBoAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-22T09:50:09.009Z",
+              "WhenOpened": "2024-10-25T07:44:31.183Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-25T07:24:14.113Z"
             }
           ]
         }
