@@ -1,14 +1,15 @@
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
+    bool isFacingRight = false;
 
     [Header("Movement")]
     float moveSpeed = 5f;
     float horizontalInput;
-
-    bool isFacingRight = false;
 
     [Header("Jumping")]
     float jumpPower = 6f;
@@ -20,28 +21,45 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask groundLayer;
 
+    [Header("Dashing")]
+    float dashSpeed = 15f;
+    float dashDuration = 0.15f;
+    float dashCooldown = 0.5f;
+    bool isDashing;
+    bool canDash = true;
+    TrailRenderer trailRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        trailRenderer = GetComponent<TrailRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Если сейчас ускорение, то ничего нельзя делать
+        if (isDashing)
+        {
+            return;
+        }
+
         horizontalInput = Input.GetAxis("Horizontal"); //Лево или право
+        
+        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
         FlipSprite(); //Меняем местами спрайт
 
         Jump(); //Прыжок
+
+        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(Dash()); //Ускорение
+        }
     }
 
-    private void FixedUpdate()
-    {
-        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
-    }
-
-    public void Jump()
+    private void Jump()
     {
         if (isGrounded()) //Если на земле
         {
@@ -80,5 +98,28 @@ public class PlayerMovement : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    private IEnumerator Dash()
+    {
+        //Physics2D.IgnoreLayerCollision(7, 8, true); когда будут враги, чтобы через них проходить
+        canDash = false;
+        isDashing = true;
+
+        trailRenderer.emitting = true; //Анимация на ускорение
+        float dashDirection = isFacingRight ? 1f : -1f;
+
+        rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y); //Ускоряем
+
+        yield return new WaitForSeconds(dashDuration); //Ждём несколько секунд
+
+        rb.velocity = new Vector2(0f, rb.velocity.y);
+
+        isDashing = false;
+        trailRenderer.emitting = false;
+        //Physics2D.IgnoreLayerCollision(7, 8, false); когда будут враги, чтобы через них проходить
+
+        yield return new WaitForSeconds(dashCooldown); //Ещё ждём прежде чем снова сможем ускоряться
+        canDash = true;
     }
 }
