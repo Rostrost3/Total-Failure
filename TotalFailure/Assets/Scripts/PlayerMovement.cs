@@ -2,13 +2,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    float horizontalInput;
-    float moveSpeed = 5f;
-    bool isFacingRight = false;
-    float jumpPower = 5f;
-    bool isJumping = false;
-
     Rigidbody2D rb;
+
+    [Header("Movement")]
+    float moveSpeed = 5f;
+    float horizontalInput;
+
+    bool isFacingRight = false;
+
+    [Header("Jumping")]
+    float jumpPower = 6f;
+    float fallMultiplier = 2.5f;
+    float lowJumpMultiplier = 2f;
+
+    [Header("GroundCheck")]
+    public Transform groundCheckPos;
+    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
+    public LayerMask groundLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -19,20 +29,37 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("Horizontal"); //Лево или право
 
-        FlipSprite();
+        FlipSprite(); //Меняем местами спрайт
 
-        if (Input.GetButtonDown("Jump") && !isJumping)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
-            isJumping = true;
-        }
+        Jump(); //Прыжок
     }
 
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+    }
+
+    public void Jump()
+    {
+        if (isGrounded()) //Если на земле
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            }
+        }
+
+        //Если 1 раз пробел то низко прыгнет, если зажать то выше
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+        {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+        }
     }
 
     void FlipSprite()
@@ -46,8 +73,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private bool isGrounded()
     {
-        isJumping = false;
+        if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer))
+        {
+            return true;
+        }
+        return false;
     }
 }

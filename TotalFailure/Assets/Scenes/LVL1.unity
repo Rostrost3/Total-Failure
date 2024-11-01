@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 259325691}
   - component: {fileID: 259325692}
   - component: {fileID: 259325693}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rb_20143_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,6 +252,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9.42, y: 3.78}
   m_EdgeRadius: 0
+--- !u!1 &430472930
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 430472931}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &430472931
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430472930}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.018, y: -0.496, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1261755494}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +422,7 @@ GameObject:
   - component: {fileID: 689782065}
   - component: {fileID: 689782066}
   - component: {fileID: 689782067}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rb_20143_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -521,7 +552,7 @@ GameObject:
   - component: {fileID: 1058777339}
   - component: {fileID: 1058777340}
   - component: {fileID: 1058777341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rb_20143_0 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +682,7 @@ GameObject:
   - component: {fileID: 1143421877}
   - component: {fileID: 1143421878}
   - component: {fileID: 1143421879}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rb_20143_0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -829,7 +860,8 @@ Transform:
   m_LocalPosition: {x: -4.665, y: 0.594, z: 0.05357785}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 430472931}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1261755495
@@ -844,6 +876,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdcbdd68e0e1704ab47fb777b035b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundCheckPos: {fileID: 430472931}
+  groundCheckSize: {x: 1, y: 0.05}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!61 &1261755496
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -952,7 +989,7 @@ GameObject:
   - component: {fileID: 1338031760}
   - component: {fileID: 1338031761}
   - component: {fileID: 1338031762}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rb_20143_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
