@@ -3,12 +3,28 @@
   "WorkspaceRootPath": "D:\\Total-failure\\Total-Failure\\TotalFailure\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|d:\\total-failure\\total-failure\\totalfailure\\assets\\scripts\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|d:\\total-failure\\total-failure\\totalfailure\\assets\\scripts\\settingsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\settingsmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|d:\\total-failure\\total-failure\\totalfailure\\assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|D:\\Total-failure\\Total-Failure\\TotalFailure\\assets\\scripts\\pausemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\pausemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|D:\\Total-failure\\Total-Failure\\TotalFailure\\assets\\scripts\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scenemanagerscript.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|D:\\Total-failure\\Total-Failure\\TotalFailure\\assets\\textmesh pro\\shaders\\tmp_sdf-mobile.shader||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{048FD883-B8FD-1942-337C-1036DB8D91A8}|Assembly-CSharp.csproj|solutionrelative:assets\\textmesh pro\\shaders\\tmp_sdf-mobile.shader||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\VolumeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\VolumeController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +34,82 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UiManager.cs",
+              "DocumentMoniker": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\UiManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UiManager.cs",
+              "ToolTip": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\UiManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UiManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T12:24:58.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "SettingsManager.cs",
+              "DocumentMoniker": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\SettingsManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\SettingsManager.cs",
+              "ToolTip": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\SettingsManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\SettingsManager.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAD0AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-05T06:54:57.633Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PauseMenu.cs",
+              "DocumentMoniker": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\PauseMenu.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\PauseMenu.cs",
+              "ToolTip": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\PauseMenu.cs",
+              "RelativeToolTip": "Assets\\Scripts\\PauseMenu.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAQwBgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T17:10:38.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "VolumeController.cs",
+              "DocumentMoniker": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\VolumeController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\VolumeController.cs",
+              "ToolTip": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\VolumeController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\VolumeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-04T16:29:34.06Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TMP_SDF-Mobile.shader",
+              "DocumentMoniker": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile.shader",
+              "RelativeDocumentMoniker": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile.shader",
+              "ToolTip": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile.shader",
+              "RelativeToolTip": "Assets\\TextMesh Pro\\Shaders\\TMP_SDF-Mobile.shader",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002777|",
+              "WhenOpened": "2024-11-04T16:12:08.408Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "SceneManagerScript.cs",
               "DocumentMoniker": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\SceneManagerScript.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SceneManagerScript.cs",
               "ToolTip": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\SceneManagerScript.cs",
               "RelativeToolTip": "Assets\\Scripts\\SceneManagerScript.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBoAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T07:44:31.183Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GameManager.cs",
-              "DocumentMoniker": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\GameManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
-              "ToolTip": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\GameManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-25T07:24:14.113Z"
+              "WhenOpened": "2024-10-25T07:44:31.183Z"
             }
           ]
         }
