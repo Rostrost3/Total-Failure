@@ -50,12 +50,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+
               "Title": "SettingsManager.cs",
               "DocumentMoniker": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\SettingsManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\SettingsManager.cs",
               "ToolTip": "D:\\Total-failure\\Total-Failure\\TotalFailure\\Assets\\Scripts\\SettingsManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\SettingsManager.cs",
               "ViewState": "AgIAAA4AAAAAAAAAAAAAwB8AAAAAAAAAAAAAAA==",
+              
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-05T06:54:57.633Z",
               "EditorCaption": ""
