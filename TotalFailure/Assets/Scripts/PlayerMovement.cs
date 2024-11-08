@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator Dash()
     {
-        //Physics2D.IgnoreLayerCollision(7, 8, true); когда будут враги, чтобы через них проходить
+        Physics2D.IgnoreLayerCollision(7, 8, true); //чтобы проходить через врагов
         canDash = false;
         isDashing = true;
 
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
 
         isDashing = false;
         trailRenderer.emitting = false;
-        //Physics2D.IgnoreLayerCollision(7, 8, false); когда будут враги, чтобы через них проходить
+        Physics2D.IgnoreLayerCollision(7, 8, false); //чтобы проходить через врагов
 
         yield return new WaitForSeconds(dashCooldown); //Ещё ждём прежде чем снова сможем ускоряться
         canDash = true;

@@ -401,7 +401,7 @@ GameObject:
   - component: {fileID: 593773172}
   - component: {fileID: 593773171}
   - component: {fileID: 593773175}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PatrolerEnemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
