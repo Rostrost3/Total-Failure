@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         horizontalInput = Input.GetAxis("Horizontal"); //Лево или право
-        
+
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
         FlipSprite(); //Меняем местами спрайт
@@ -60,6 +60,23 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash()); //Ускорение
+        }
+
+        ChangeColliderWhenRush(); //Чтобы при беге не было вида, что он летает
+    }
+
+    private void ChangeColliderWhenRush()
+    {
+        if (isGrounded() && horizontalInput == 0) //Если стоит и не двигается
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rb.transform.position, Vector2.down, 0.1f); //Ищем внизу платформу на расстоянии 0.1
+
+            //Проверяем, есть ли платформа под игроком
+            if (hit.collider != null)
+            {
+                float targetY = hit.point.y + 0.1f; // Платформа + небольшой отступ от неё
+                rb.transform.position = new Vector2(rb.transform.position.x,  Mathf.Lerp(rb.transform.position.y, targetY, 0.001f)); //Переход от одного значения к другому за определенный период времени
+            }
         }
     }
 
