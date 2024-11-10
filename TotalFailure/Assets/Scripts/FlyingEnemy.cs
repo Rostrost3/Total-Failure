@@ -41,6 +41,9 @@ public class FlyingEnemy : MonoBehaviour
             goBack = false;
         }
 
+        IsMovingRight();
+        Flip();
+            
         // ¬ыполнение действий в зависимости от текущего состо€ни€
         if (chill)
         {
@@ -57,8 +60,19 @@ public class FlyingEnemy : MonoBehaviour
             GoBack();
             currentSpeed = chillSpeed;
         }
+    }
 
-        Flip();
+    private void IsMovingRight()
+    {
+        // ѕатрулирование влево-вправо
+        if (transform.position.x > startingPoint.position.x + positionOfPatrol)
+        {
+            movingRight = false;
+        }
+        else if (transform.position.x < startingPoint.position.x - positionOfPatrol)
+        {
+            movingRight = true;
+        }
     }
 
     private void Chase()
@@ -78,16 +92,6 @@ public class FlyingEnemy : MonoBehaviour
 
     private void Chill()
     {
-        // ѕатрулирование влево-вправо
-        if (transform.position.x > startingPoint.position.x + positionOfPatrol)
-        {
-            movingRight = false;
-        }
-        else if (transform.position.x < startingPoint.position.x - positionOfPatrol)
-        {
-            movingRight = true;
-        }
-
         // ƒвижение в зависимости от направлени€
         if (movingRight)
         {
@@ -101,8 +105,19 @@ public class FlyingEnemy : MonoBehaviour
 
     private void Flip()
     {
+        // ѕоворот в сторону игрока, если враг находитс€ в состо€нии "angry"
+        if (angry)
+        {
+            if ((transform.position.x < player.transform.position.x && transform.localScale.x < 0) ||
+                (transform.position.x > player.transform.position.x && transform.localScale.x > 0))
+            {
+                Vector3 scaler = transform.localScale;
+                scaler.x *= -1;
+                transform.localScale = scaler;
+            }
+        }
         // ѕереворот врага в зависимости от направлени€ движени€
-        if ((movingRight && transform.localScale.x < 0) || (!movingRight && transform.localScale.x > 0))
+        else if ((movingRight && transform.localScale.x < 0) || (!movingRight && transform.localScale.x > 0))
         {
             Vector3 scaler = transform.localScale;
             scaler.x *= -1;
