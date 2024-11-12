@@ -7,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     bool isFacingRight = false;
 
+    [Header("Player Animation Settings")]
+    public Animator animator;
+
     [Header("Movement")]
     float moveSpeed = 5f;
     float horizontalInput;
@@ -44,6 +47,8 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+
+        animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalInput)); // Параметр для анимации
 
         horizontalInput = Input.GetAxis("Horizontal"); //Лево или право
         
