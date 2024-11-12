@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttack
+public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHealth
 {
     private float currentSpeed; // Скорость врага сейчас
     public float chillSpeed; // Скорость при патрулировании
@@ -21,6 +21,13 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttack
     bool goBack = false;
 
     public int health = 10;
+    public int damage = 10;
+
+    private float timeBtwAttack = 0f;
+    public float startTimeBtwAttack; //Сколько не может атаковать
+
+    public Transform attackPos; //Круг, где ищем игрока
+    public float attackRange; //Диапазон круга
 
 
     // Start is called before the first frame update
@@ -72,6 +79,8 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttack
         {
             Destroy(gameObject);
         }
+
+        Attack();
     }
 
 
@@ -114,5 +123,30 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttack
     public void TakeDamage(int damage)
     {
         health -= damage;
+    }
+
+    private void Attack()
+    {
+        if (timeBtwAttack <= 0)
+        {
+            //Можно атаковать
+            Collider2D playerToDamage = Physics2D.OverlapCircle(attackPos.position, attackRange, LayerMask.GetMask("Player"));
+            if(playerToDamage != null)
+            {
+                playerToDamage.GetComponent<IDamageable>().TakeDamage(damage);
+                Debug.Log("Enemy Attack!");
+            }
+            timeBtwAttack = startTimeBtwAttack;
+        }
+        else
+        {
+            timeBtwAttack -= Time.deltaTime;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 }

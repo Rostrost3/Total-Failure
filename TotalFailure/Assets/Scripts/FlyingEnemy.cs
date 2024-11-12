@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttack
+public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndHealth
 {
     public float chillSpeed; // Скорость патрулирования
     public float angrySpeed; // Скорость преследования
@@ -19,6 +19,13 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttack
     public bool goBack = false; // Состояние возвращения к начальной точке
 
     public int health = 10;
+    public int damage = 10;
+
+    private float timeBtwAttack = 0f;
+    public float startTimeBtwAttack; //Сколько не может атаковать
+
+    public Transform attackPos; //Круг, где ищем игрока
+    public float attackRange; //Диапазон круга
 
     // Start вызывается перед первым кадром
     void Start()
@@ -67,6 +74,8 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttack
         {
             Destroy(gameObject);
         }
+
+        Attack();
     }
 
     private void IsMovingRight()
@@ -134,5 +143,30 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttack
     public void TakeDamage(int damage)
     {
         health -= damage;
+    }
+
+    private void Attack()
+    {
+        if (timeBtwAttack <= 0)
+        {
+            //Можно атаковать
+            Collider2D playerToDamage = Physics2D.OverlapCircle(attackPos.position, attackRange, LayerMask.GetMask("Player"));
+            if (playerToDamage != null)
+            {
+                playerToDamage.GetComponent<IDamageable>().TakeDamage(damage);
+                Debug.Log("Enemy Attack!");
+            }
+            timeBtwAttack = startTimeBtwAttack;
+        }
+        else
+        {
+            timeBtwAttack -= Time.deltaTime;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 }
