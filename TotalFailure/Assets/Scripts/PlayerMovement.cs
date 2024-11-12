@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Animator animator;
+
     Rigidbody2D rb;
     bool isFacingRight = false;
 
@@ -39,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("moveSpeed", Mathf.Abs(horizontalInput));
+
         //≈сли сейчас ускорение, то ничего нельз€ делать
         if (isDashing)
         {
