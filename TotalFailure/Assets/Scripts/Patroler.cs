@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class Patroler : MonoBehaviour
+public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttack
 {
     private float currentSpeed; // Скорость врага сейчас
     public float chillSpeed; // Скорость при патрулировании
@@ -20,6 +20,7 @@ public class Patroler : MonoBehaviour
     bool angry = false;
     bool goBack = false;
 
+    public int health = 10;
 
 
     // Start is called before the first frame update
@@ -66,6 +67,11 @@ public class Patroler : MonoBehaviour
             GoBack();
             currentSpeed = chillSpeed;
         }
+
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
 
@@ -103,5 +109,10 @@ public class Patroler : MonoBehaviour
     void GoBack()
     {
         transform.position = Vector2.MoveTowards(transform.position, point.position, currentSpeed * Time.deltaTime);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
     }
 }

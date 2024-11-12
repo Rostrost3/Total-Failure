@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEnemy : MonoBehaviour
+public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttack
 {
     public float chillSpeed; // Скорость патрулирования
     public float angrySpeed; // Скорость преследования
@@ -17,6 +17,8 @@ public class FlyingEnemy : MonoBehaviour
     public bool chill = false; // Состояние патрулирования
     public bool angry = false; // Состояние преследования
     public bool goBack = false; // Состояние возвращения к начальной точке
+
+    public int health = 10;
 
     // Start вызывается перед первым кадром
     void Start()
@@ -59,6 +61,11 @@ public class FlyingEnemy : MonoBehaviour
         {
             GoBack();
             currentSpeed = chillSpeed;
+        }
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -123,5 +130,9 @@ public class FlyingEnemy : MonoBehaviour
             scaler.x *= -1;
             transform.localScale = scaler;
         }
+    }
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
     }
 }
