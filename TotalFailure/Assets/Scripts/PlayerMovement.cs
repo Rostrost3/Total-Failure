@@ -24,6 +24,21 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask groundLayer;
 
+    [Header("WallCheck")]
+    public Transform wallCheckPos;
+    public Vector2 wallCheckSize = new Vector2(0.5f, 0.05f);
+    public LayerMask wallLayer;
+
+    [Header("WallMovement")]
+    public float wallSlideSpeed = 1f;
+    bool IsWallSliding;
+
+    // bool isWallJumping;
+    // float wallJumpDirection;
+    // float wallJumpTime = 0.5f;
+    // float wallJumpTimer;
+    // public Vector2 wallJumpForce = new Vector2(5f, 6f);
+
     [Header("Dashing")]
     float dashSpeed = 15f;
     float dashDuration = 0.15f;
@@ -42,31 +57,35 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Если сейчас ускорение, то ничего нельзя делать
+        //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         if (isDashing)
         {
             return;
         }
 
-        animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalInput)); // Параметр для анимации
+        animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalInput)); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        horizontalInput = Input.GetAxis("Horizontal"); //Лево или право
+        horizontalInput = Input.GetAxis("Horizontal"); //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
 
-        FlipSprite(); //Меняем местами спрайт
+        FlipSprite(); //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-        Jump(); //Прыжок
+        Jump(); //пїЅпїЅпїЅпїЅпїЅпїЅ
+
+        WallSlide(); //РЎРєРѕР»СЊР¶РµРЅРёРµ РїРѕ СЃС‚РµРЅРµ
+
+        // WallJump(); //РџСЂС‹Р¶РѕРє РѕС‚ СЃС‚РµРЅС‹
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
-            StartCoroutine(Dash()); //Ускорение
+            StartCoroutine(Dash()); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
     }
 
     private void Jump()
     {
-        if (isGrounded()) //Если на земле
+        if (isGrounded()) //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         {
             if (Input.GetButtonDown("Jump"))
             {
@@ -74,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        //Если 1 раз пробел то низко прыгнет, если зажать то выше
+        //пїЅпїЅпїЅпїЅ 1 пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
         if (rb.velocity.y < 0)
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
@@ -83,6 +102,25 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
+
+        // //РџСЂС‹Р¶РѕРє РѕС‚ СЃС‚РµРЅС‹
+        // if (wallJumpTimer > 0f)
+        // {
+        //     isWallJumping = true;
+        //     rb.velocity = new Vector2(wallJumpForce.x * wallJumpDirection, wallJumpForce.y);
+        //     wallJumpTimer = 0f;
+
+        //     if (transform.localScale.x != wallJumpDirection)
+        //     {
+        //         isFacingRight = !isFacingRight;
+        //         Vector3 ls = transform.localScale;
+        //         ls.x *= -1f;
+        //         transform.localScale = ls;
+        //     }
+            
+
+        //     Invoke("CancelWallJump", wallJumpTime + 0.1f);
+        // }
     }
 
     void FlipSprite()
@@ -105,26 +143,80 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
+    private bool WallCheck()
+    {
+        if (Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    
+    private void WallSlide()
+    {
+        if (WallCheck() && !isGrounded() && horizontalInput != 0)
+        {
+            IsWallSliding = true;
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Max(rb.velocity.y, -wallSlideSpeed));
+        }
+        else
+        {
+            IsWallSliding = false;
+        }
+    }
+
+    // private void WallJump()
+    // {
+    //     if (IsWallSliding)
+    //     {
+    //         isWallJumping = false;
+    //         wallJumpDirection = transform.localScale.x;
+    //         wallJumpTimer = wallJumpTime;
+
+    //         CancelInvoke("CancelWallJump");
+    //     }
+    //     else if (wallJumpTimer > 0f)
+    //     {
+    //         wallJumpTimer -= Time.deltaTime;
+    //     }
+    // }
+
+    // private void CancelWallJump()
+    // {
+    //     isWallJumping = false;
+    // }
+
     private IEnumerator Dash()
     {
-        Physics2D.IgnoreLayerCollision(7, 8, true); //чтобы проходить через врагов
+        Physics2D.IgnoreLayerCollision(7, 8, true); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         canDash = false;
         isDashing = true;
 
-        trailRenderer.emitting = true; //Анимация на ускорение
+        trailRenderer.emitting = true; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         float dashDirection = isFacingRight ? 1f : -1f;
 
-        rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y); //Ускоряем
+        rb.velocity = new Vector2(dashDirection * dashSpeed, rb.velocity.y); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-        yield return new WaitForSeconds(dashDuration); //Ждём несколько секунд
+        yield return new WaitForSeconds(dashDuration); //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
         rb.velocity = new Vector2(0f, rb.velocity.y);
 
         isDashing = false;
         trailRenderer.emitting = false;
-        Physics2D.IgnoreLayerCollision(7, 8, false); //чтобы проходить через врагов
+        Physics2D.IgnoreLayerCollision(7, 8, false); //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-        yield return new WaitForSeconds(dashCooldown); //Ещё ждём прежде чем снова сможем ускоряться
+        yield return new WaitForSeconds(dashCooldown); //пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         canDash = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(wallCheckPos.position, wallCheckSize);
+
     }
 }
