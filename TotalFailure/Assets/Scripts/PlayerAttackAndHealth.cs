@@ -10,26 +10,22 @@ public interface IDamageable
 
 public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
 {
-
-    [Header("Player Animation Settings")]
-    public Animator animator;
-
     private float timeBtwAttack = 0f;
-    public float startTimeBtwAttack; //ГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅ ГЇВїВЅГЇВїВЅ ГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅ ГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅ
+    public float startTimeBtwAttack; //Сколько не может атаковать
 
-    public Transform attackPos; //ГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅ, ГЇВїВЅГЇВїВЅГЇВїВЅ ГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅ ГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅ
-    public float attackRange; //ГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅ ГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅ
+    public Transform attackPos; //Круг, где ищем врагов
+    public float attackRange; //Диапазон круга
     public LayerMask whatIsEnemies;
 
     public double health = 10;
     public double damage = 1;
 
-    public Transform groundCheckPos; //Г—ГІГ®ГЎГ» Г±Г¬Г®ГІГ°ГҐГІГј Г·ГІГ® ГЇГ®Г¤ ГЁГЈГ°Г®ГЄГ®Г¬
-    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f); //ГђГ Г§Г¬ГҐГ°
-    public LayerMask spikesLayer; //ГЊГ Г±ГЄГ  ГёГЁГЇГ®Гў
-    public LayerMask groundLayer; //ГЊГ Г±ГЄГ  Г§ГҐГ¬Г«ГЁ
+    public Transform groundCheckPos; //Чтобы смотреть что под игроком
+    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f); //Размер
+    public LayerMask spikesLayer; //Маска шипов
+    public LayerMask groundLayer; //Маска земли
 
-    private Vector2 playerPos; //Г„Г«Гї Г§Г ГЇГ®Г¬ГЁГ­Г Г­ГЁГї ГЇГ®Г§ГЁГ¶ГЁГЁ ГЁГЈГ°Г®ГЄГ 
+    private Vector2 playerPos; //Для запоминания позиции игрока
 
     // Start is called before the first frame update
     void Start()
@@ -47,17 +43,17 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
             Destroy(gameObject);
         }
 
-        animator.SetBool("Attack", Input.GetMouseButtonDown(0));
+        TouchSpikes();
     }
 
     private void Attack()
     {
         if (timeBtwAttack <= 0)
         {
-            //ГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅ ГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅГЇВїВЅ
+            //Можно атаковать
             if (Input.GetMouseButtonDown(0))
             {
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies); //Г€Г№ГҐГ¬ Гў ГЇГ®Г«ГҐ Г§Г°ГҐГ­ГЁГЁ Г ГІГ ГЄГЁ ГЁГЈГ°Г®ГЄГ  ГўГ°Г ГЈГ®Гў
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies); //Ищем в поле зрении атаки игрока врагов
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     IDamageable damageable = enemiesToDamage[i].GetComponent<IDamageable>();
@@ -83,7 +79,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
 
     private void TouchSpikes()
     {
-        //Г…Г±Г«ГЁ Г­Г  ГёГЁГЇГ Гµ
+        //Если на шипах
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, spikesLayer))
         {
             TakeDamage(3);
