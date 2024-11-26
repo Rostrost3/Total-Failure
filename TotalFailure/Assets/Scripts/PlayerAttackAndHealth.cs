@@ -9,11 +9,15 @@ public interface IDamageable
 
 public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
 {
-    private float timeBtwAttack = 0f;
-    public float startTimeBtwAttack; //Сколько не может атаковать
 
-    public Transform attackPos; //Круг, где ищем врагов
-    public float attackRange; //Диапазон круга
+    [Header("Player Animation Settings")]
+    public Animator animator;
+
+    private float timeBtwAttack = 0f;
+    public float startTimeBtwAttack; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+
+    public Transform attackPos; //пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public float attackRange; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     public LayerMask whatIsEnemies;
 
     public int health = 10;
@@ -34,13 +38,15 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
         {
             Destroy(gameObject);
         }
+
+        animator.SetBool("Attack", Input.GetMouseButtonDown(0));
     }
 
     private void Attack()
     {
         if (timeBtwAttack <= 0)
         {
-            //Можно атаковать
+            //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             if (Input.GetMouseButtonDown(0))
             {
                 Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
