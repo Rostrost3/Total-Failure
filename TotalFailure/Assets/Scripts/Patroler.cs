@@ -20,8 +20,8 @@ public class Patroler : MonoBehaviour, IDamageable //� ����� PlayerA
     bool angry = false;
     bool goBack = false;
 
-    public int health = 10;
-    public int damage = 10;
+    public double health = 10;
+    public double damage = 10;
 
     private float timeBtwAttack = 0f;
     public float startTimeBtwAttack; //������� �� ����� ���������
@@ -122,7 +122,7 @@ public class Patroler : MonoBehaviour, IDamageable //� ����� PlayerA
         transform.position = Vector2.MoveTowards(transform.position, point.position, currentSpeed * Time.deltaTime);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(double damage)
     {
         health -= damage;
     }
