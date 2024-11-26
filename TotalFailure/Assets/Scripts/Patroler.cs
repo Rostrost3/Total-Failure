@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class Patroler : MonoBehaviour, IDamageable //пїЅ пїЅпїЅпїЅпїЅпїЅ PlayerAttackAndHealth
+public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHealth
 {
-    private float currentSpeed; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
-    public float chillSpeed; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
-    public float angrySpeed; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    private float currentSpeed; // Скорость врага сейчас
+    public float chillSpeed; // Скорость при патрулировании
+    public float angrySpeed; // Скорость врага при агрессии
 
     public int positionOfPatrol;
     public Transform point;
-    bool movingRight; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅ
+    bool movingRight; // Для поворота противника влево/вправо
 
-    Transform player; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
-    public float stoppingDistance; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    Transform player; // Для считывания позиции игрока
+    public float stoppingDistance; // Расстояние от противнка до героя
 
     bool chill = false;
     bool angry = false;
@@ -24,10 +24,10 @@ public class Patroler : MonoBehaviour, IDamageable //пїЅ пїЅпїЅпїЅпїЅпїЅ PlayerA
     public double damage = 10;
 
     private float timeBtwAttack = 0f;
-    public float startTimeBtwAttack; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public float startTimeBtwAttack; //Сколько не может атаковать
 
-    public Transform attackPos; //пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
-    public float attackRange; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    public Transform attackPos; //Круг, где ищем игрока
+    public float attackRange; //Диапазон круга
 
 
     // Start is called before the first frame update
@@ -81,12 +81,10 @@ public class Patroler : MonoBehaviour, IDamageable //пїЅ пїЅпїЅпїЅпїЅпїЅ PlayerA
         }
 
         Attack();
-
-        Flip();
     }
 
 
-    // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    // Что делает на дефолте
     void Chill()
     {
         if (transform.position.x > point.position.x + positionOfPatrol)
@@ -109,14 +107,14 @@ public class Patroler : MonoBehaviour, IDamageable //пїЅ пїЅпїЅпїЅпїЅпїЅ PlayerA
     }
 
     
-    // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    // Что происходит, если близко подойти
     void Angry()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.position, currentSpeed * Time.deltaTime);
     }
 
 
-    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+    // Отход назад, если далеко отошел от врага
     void GoBack()
     {
         transform.position = Vector2.MoveTowards(transform.position, point.position, currentSpeed * Time.deltaTime);
@@ -127,22 +125,11 @@ public class Patroler : MonoBehaviour, IDamageable //пїЅ пїЅпїЅпїЅпїЅпїЅ PlayerA
         health -= damage;
     }
 
-    private void Flip()
-        {
-            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "angry"
-            if ((transform.position.x < player.transform.position.x && transform.localScale.x < 0) ||
-                (transform.position.x > player.transform.position.x && transform.localScale.x > 0))
-            {
-                Vector3 scaler = transform.localScale;
-                scaler.x *= -1;
-                transform.localScale = scaler;
-            }
-        }
     private void Attack()
     {
         if (timeBtwAttack <= 0)
         {
-            //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+            //Можно атаковать
             Collider2D playerToDamage = Physics2D.OverlapCircle(attackPos.position, attackRange, LayerMask.GetMask("Player"));
             if(playerToDamage != null)
             {
