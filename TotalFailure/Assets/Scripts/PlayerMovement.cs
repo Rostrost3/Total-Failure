@@ -66,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalInput)); // �������� ��� ��������
 
         animator.SetBool("WallSlide", IsWallSliding); //�������� ��� �����
+        
+        animator.SetBool("Jump", Input.GetButtonDown("Jump"));
 
         horizontalInput = Input.GetAxis("Horizontal"); //���� ��� �����
         
