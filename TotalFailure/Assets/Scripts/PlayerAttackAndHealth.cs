@@ -30,7 +30,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerPos = transform.position;
     }
 
     // Update is called once per frame
@@ -43,15 +43,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
             Destroy(gameObject);
         }
 
-        //≈сли игрок не на шипах, не на врагах и на земле, то запоминаем позицию игрока
-        if (CheckMaskUnderPlayer() && Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer))
-        {
-            playerPos = transform.position;
-        }
-        else
-        {
-            TouchSpikes();
-        }
+        TouchSpikes();
     }
 
     private void Attack()
@@ -85,31 +77,13 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
         health -= damage;
     }
 
-    private bool CheckMaskUnderPlayer()
-    {
-        //ѕровер€ет, что игрок стоит не на шипах и не на враге
-        Collider2D collider = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0);
-        if(collider != null)
-        {
-            int objectLayer = collider.gameObject.layer;
-            //ѕроверка, что не шипы и не враги
-            if ((spikesLayer & (1 << objectLayer)) == 0 &&
-                (whatIsEnemies & (1 << objectLayer)) == 0)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void TouchSpikes()
     {
         //≈сли на шипах
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, spikesLayer))
         {
-            TakeDamage(health * 0.3);
-            float direction = transform.localScale.x > 0 ? 1f : -1f;
-            transform.position = new Vector2(transform.position.x + 1f * direction, playerPos.y + 1f);
+            TakeDamage(3);
+            transform.position = playerPos;
         }
     }
 
