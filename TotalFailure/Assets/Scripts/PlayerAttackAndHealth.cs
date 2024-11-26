@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamage(int damage);
+    void TakeDamage(double damage);
 }
 
 public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
@@ -16,13 +17,20 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
     public float attackRange; //Диапазон круга
     public LayerMask whatIsEnemies;
 
-    public int health = 10;
-    public int damage = 1;
+    public double health = 10;
+    public double damage = 1;
+
+    public Transform groundCheckPos; //Чтобы смотреть что под игроком
+    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f); //Размер
+    public LayerMask spikesLayer; //Маска шипов
+    public LayerMask groundLayer; //Маска земли
+
+    private Vector2 playerPos; //Для запоминания позиции игрока
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerPos = transform.position;
     }
 
     // Update is called once per frame
@@ -34,6 +42,8 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
         {
             Destroy(gameObject);
         }
+
+        TouchSpikes();
     }
 
     private void Attack()
@@ -43,7 +53,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
             //Можно атаковать
             if (Input.GetMouseButtonDown(0))
             {
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies);
+                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(attackPos.position, attackRange, whatIsEnemies); //Ищем в поле зрении атаки игрока врагов
                 for (int i = 0; i < enemiesToDamage.Length; i++)
                 {
                     IDamageable damageable = enemiesToDamage[i].GetComponent<IDamageable>();
@@ -62,9 +72,19 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(double damage)
     {
         health -= damage;
+    }
+
+    private void TouchSpikes()
+    {
+        //Если на шипах
+        if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, spikesLayer))
+        {
+            TakeDamage(3);
+            transform.position = playerPos;
+        }
     }
 
     private void OnDrawGizmosSelected()
@@ -72,4 +92,5 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
+
 }

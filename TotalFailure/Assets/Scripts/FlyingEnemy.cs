@@ -18,8 +18,8 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
     public bool angry = false; // Состояние преследования
     public bool goBack = false; // Состояние возвращения к начальной точке
 
-    public int health = 10;
-    public int damage = 10;
+    public double health = 10;
+    public double damage = 10;
 
     private float timeBtwAttack = 0f;
     public float startTimeBtwAttack; //Сколько не может атаковать
@@ -140,7 +140,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
             transform.localScale = scaler;
         }
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(double damage)
     {
         health -= damage;
     }
