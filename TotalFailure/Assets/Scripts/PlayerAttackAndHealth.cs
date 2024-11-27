@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public interface IDamageable
 {
@@ -13,11 +14,16 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
     private float timeBtwAttack = 0f;
     public float startTimeBtwAttack; //Сколько не может атаковать
 
+    public Image bar; // Картинка с баром хп
+    public float fill; // Хп в баре в процентах
+
+
     public Transform attackPos; //Круг, где ищем врагов
     public float attackRange; //Диапазон круга
     public LayerMask whatIsEnemies;
 
     public double health = 10;
+    public double current_health = 10;
     public double damage = 1;
 
     public Transform groundCheckPos; //Чтобы смотреть что под игроком
@@ -31,6 +37,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
     void Start()
     {
         playerPos = transform.position;
+        fill = 1f;
     }
 
     // Update is called once per frame
@@ -38,7 +45,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
     {
         Attack();
 
-        if (health <= 0)
+        if (current_health <= 0)
         {
             Destroy(gameObject);
         }
@@ -74,7 +81,9 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(double damage)
     {
-        health -= damage;
+        current_health -= damage;
+        fill = (float)(current_health / health);
+        bar.fillAmount = fill;
     }
 
     private void TouchSpikes()
