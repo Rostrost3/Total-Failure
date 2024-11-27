@@ -65,6 +65,12 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("HorizontalMove", Mathf.Abs(horizontalInput)); // �������� ��� ��������
 
+        animator.SetBool("Jump", Input.GetButtonDown("Jump"));
+
+        animator.SetBool("WallSlide", IsWallSliding);
+
+        animator.SetBool("Attack", Input.GetMouseButtonDown(0));
+
         horizontalInput = Input.GetAxis("Horizontal"); //���� ��� �����
         
         rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
