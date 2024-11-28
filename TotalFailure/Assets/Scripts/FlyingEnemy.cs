@@ -18,7 +18,8 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
     public bool angry = false; // Состояние преследования
     public bool goBack = false; // Состояние возвращения к начальной точке
 
-    public double health = 10;
+    public double max_health = 10;
+    public double current_health = 10;
     public double damage = 10;
 
     private float timeBtwAttack = 0f;
@@ -27,11 +28,15 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
     public Transform attackPos; //Круг, где ищем игрока
     public float attackRange; //Диапазон круга
 
+    [SerializeField] private EnemyHealthBar healthBar; // Шкала здоровья
+
+
     // Start вызывается перед первым кадром
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         currentSpeed = chillSpeed; // Начальная скорость - патрулирование
+        healthBar.SetHealthValue(current_health, max_health); // Активация health bar
     }
 
     // Update вызывается каждый кадр
@@ -70,7 +75,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
             currentSpeed = chillSpeed;
         }
 
-        if (health <= 0)
+        if (current_health <= 0)
         {
             Destroy(gameObject);
         }
@@ -142,7 +147,8 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
     }
     public void TakeDamage(double damage)
     {
-        health -= damage;
+        current_health -= damage;
+        healthBar.SetHealthValue(current_health, max_health);
     }
 
     private void Attack()

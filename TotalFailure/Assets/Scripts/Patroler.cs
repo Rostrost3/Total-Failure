@@ -20,7 +20,8 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
     bool angry = false;
     bool goBack = false;
 
-    public double health = 10;
+    public double max_health = 10;
+    public double current_health = 10;
     public double damage = 10;
 
     private float timeBtwAttack = 0f;
@@ -29,11 +30,14 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
     public Transform attackPos; //Круг, где ищем игрока
     public float attackRange; //Диапазон круга
 
+    [SerializeField] private EnemyHealthBar healthBar; // Шкала здоровья
+
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        healthBar.SetHealthValue(current_health, max_health); // Активация health bar
     }
 
     // Update is called once per frame
@@ -75,7 +79,7 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
             currentSpeed = chillSpeed;
         }
 
-        if(health <= 0)
+        if(current_health <= 0)
         {
             Destroy(gameObject);
         }
@@ -122,7 +126,9 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
 
     public void TakeDamage(double damage)
     {
-        health -= damage;
+        current_health -= damage;
+        healthBar.SetHealthValue(current_health, max_health);
+
     }
 
     private void Attack()
