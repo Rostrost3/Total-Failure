@@ -14756,7 +14756,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Time: 0.3
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -14903,6 +14903,9 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 1
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
   wallSlideSpeed: 1
 --- !u!50 &1576820673
 Rigidbody2D:
