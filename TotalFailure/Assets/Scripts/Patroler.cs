@@ -154,7 +154,19 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
 
     private void Flip()
     {
-        if ((movingRight && transform.localScale.x > 0) || (!movingRight && transform.localScale.x < 0))
+        // Поворот в сторону игрока, если враг находится в состоянии "angry"
+        if (angry)
+        {
+            if ((transform.position.x < player.transform.position.x && transform.localScale.x > 0) ||
+                (transform.position.x > player.transform.position.x && transform.localScale.x < 0))
+            {
+                Vector3 scaler = transform.localScale;
+                scaler.x *= -1;
+                transform.localScale = scaler;
+            }
+        }
+        // Переворот врага в зависимости от направления движения
+        else if ((movingRight && transform.localScale.x > 0) || (!movingRight && transform.localScale.x < 0))
         {
             Vector3 scaler = transform.localScale;
             scaler.x *= -1;
