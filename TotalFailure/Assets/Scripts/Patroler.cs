@@ -32,6 +32,10 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
 
     [SerializeField] private EnemyHealthBar healthBar; // Шкала здоровья
 
+    public Transform groundCheckPos; //Чтобы смотреть что под врагом
+    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f); //Размер
+    public LayerMask spikesLayer; //Маска шипов
+
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +91,8 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
         Attack();
 
         Flip();
+
+        TouchSpikes();
     }
 
 
@@ -173,9 +179,22 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
             transform.localScale = scaler;
         }
     }
+
+    private void TouchSpikes()
+    {
+        //Если на шипах
+        if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, spikesLayer))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
     }
 }
