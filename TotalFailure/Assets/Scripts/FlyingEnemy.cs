@@ -55,9 +55,6 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
             goBack = false;
         }
 
-        IsMovingRight();
-        Flip();
-            
         // Выполнение действий в зависимости от текущего состояния
         if (chill)
         {
@@ -79,6 +76,10 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
         {
             Destroy(gameObject);
         }
+
+        IsMovingRight();
+
+        Flip();
 
         Attack();
     }

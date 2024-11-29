@@ -1895,7 +1895,7 @@ MonoBehaviour:
   stopDistance: 1
   positionOfPatrol: 1.9
   startingPoint: {fileID: 875918734}
-  chill: 0
+  chill: 1
   angry: 0
   goBack: 0
   max_health: 2
