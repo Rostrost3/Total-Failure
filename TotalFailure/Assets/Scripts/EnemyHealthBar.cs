@@ -7,7 +7,7 @@ public class EnemyHealthBar : MonoBehaviour
 {
     [SerializeField] private Slider healthBar;
     [SerializeField] private Vector3 offset;
-
+   
 
     private void Update()
     {

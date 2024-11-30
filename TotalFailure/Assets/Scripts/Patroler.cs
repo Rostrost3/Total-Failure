@@ -86,6 +86,7 @@ public class Patroler : MonoBehaviour, IDamageable //ֲ פאיכו PlayerAttackAndHeal
         if(current_health <= 0)
         {
             Destroy(gameObject);
+            
         }
 
         Attack();
