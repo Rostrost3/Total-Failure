@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public interface IDamageable
 {
@@ -13,17 +14,24 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
     private float timeBtwAttack = 0f;
     public float startTimeBtwAttack; //Сколько не может атаковать
 
+    public Image bar; // Картинка с баром хп
+    public float fill; // Хп в баре в процентах
+
+
     public Transform attackPos; //Круг, где ищем врагов
     public float attackRange; //Диапазон круга
     public LayerMask whatIsEnemies;
 
-    public double health = 10;
+    public double max_health = 10;
+    public double current_health = 10;
+    //public bool isAlive = true;
     public double damage = 1;
 
     public Transform groundCheckPos; //Чтобы смотреть что под игроком
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f); //Размер
     public LayerMask spikesLayer; //Маска шипов
     public LayerMask groundLayer; //Маска земли
+    public DeathMenu deathMenu;
 
     private Vector2 playerPos; //Для запоминания позиции игрока
 
@@ -31,6 +39,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
     void Start()
     {
         playerPos = transform.position;
+        fill = 1f;
     }
 
     // Update is called once per frame
@@ -38,9 +47,11 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
     {
         Attack();
 
-        if (health <= 0)
-        {
+        if (current_health <= 0)
+        { 
             Destroy(gameObject);
+            //isAlive = false;
+            deathMenu.MenuSetActive();
         }
 
         TouchSpikes();
@@ -74,7 +85,9 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
 
     public void TakeDamage(double damage)
     {
-        health -= damage;
+        current_health -= damage;
+        fill = (float)(current_health / max_health);
+        bar.fillAmount = fill;
     }
 
     private void TouchSpikes()

@@ -20,7 +20,8 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
     bool angry = false;
     bool goBack = false;
 
-    public double health = 10;
+    public double max_health = 10;
+    public double current_health = 10;
     public double damage = 10;
 
     private float timeBtwAttack = 0f;
@@ -29,11 +30,18 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
     public Transform attackPos; //Круг, где ищем игрока
     public float attackRange; //Диапазон круга
 
+    [SerializeField] private EnemyHealthBar healthBar; // Шкала здоровья
+
+    public Transform groundCheckPos; //Чтобы смотреть что под врагом
+    public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f); //Размер
+    public LayerMask spikesLayer; //Маска шипов
+
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        healthBar.SetHealthValue(current_health, max_health); // Активация health bar
     }
 
     // Update is called once per frame
@@ -75,12 +83,17 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
             currentSpeed = chillSpeed;
         }
 
-        if(health <= 0)
+        if(current_health <= 0)
         {
             Destroy(gameObject);
+            
         }
 
         Attack();
+
+        Flip();
+
+        TouchSpikes();
     }
 
 
@@ -122,7 +135,9 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
 
     public void TakeDamage(double damage)
     {
-        health -= damage;
+        current_health -= damage;
+        healthBar.SetHealthValue(current_health, max_health);
+
     }
 
     private void Attack()
@@ -144,9 +159,43 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
         }
     }
 
+    private void Flip()
+    {
+        // Поворот в сторону игрока, если враг находится в состоянии "angry"
+        if (angry)
+        {
+            if ((transform.position.x < player.transform.position.x && transform.localScale.x > 0) ||
+                (transform.position.x > player.transform.position.x && transform.localScale.x < 0))
+            {
+                Vector3 scaler = transform.localScale;
+                scaler.x *= -1;
+                transform.localScale = scaler;
+            }
+        }
+        // Переворот врага в зависимости от направления движения
+        else if ((movingRight && transform.localScale.x > 0) || (!movingRight && transform.localScale.x < 0))
+        {
+            Vector3 scaler = transform.localScale;
+            scaler.x *= -1;
+            transform.localScale = scaler;
+        }
+    }
+
+    private void TouchSpikes()
+    {
+        //Если на шипах
+        if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, spikesLayer))
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(groundCheckPos.position, groundCheckSize);
     }
 }
