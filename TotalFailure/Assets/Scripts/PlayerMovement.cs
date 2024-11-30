@@ -28,17 +28,16 @@ public class PlayerMovement : MonoBehaviour
     public Transform wallCheckPos;
     public Vector2 wallCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask wallLayer;
-    public LayerMask EnemyLayer; //Чтобы не прилипал к врагам
 
     [Header("WallMovement")]
     public float wallSlideSpeed = 1f;
     bool IsWallSliding;
 
-    // bool isWallJumping;
-    // float wallJumpDirection;
-    // float wallJumpTime = 0.5f;
-    // float wallJumpTimer;
-    // public Vector2 wallJumpForce = new Vector2(5f, 6f);
+    bool isWallJumping;
+    float wallJumpDirection;
+    float wallJumpTime = 0.4f;
+    float wallJumpTimer;
+    public Vector2 wallJumpForce = new Vector2(5f, 6f);
 
     [Header("Dashing")]
     float dashSpeed = 15f;
@@ -72,17 +71,21 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetBool("Attack", Input.GetMouseButtonDown(0));
 
-        horizontalInput = Input.GetAxis("Horizontal"); //���� ��� �����
+         horizontalInput = Input.GetAxis("Horizontal"); //���� ��� �����
         
-        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+        if (!isWallJumping)
+        {   
+            rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+            FlipSprite(); //������ ������� ������
+        }
+        
 
-        FlipSprite(); //������ ������� ������
 
         Jump(); //������
 
         WallSlide(); //Скольжение по стене
 
-        // WallJump(); //Прыжок от стены
+        WallJump(); //Прыжок от стены
 
         if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
@@ -110,24 +113,24 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
         }
 
-        // //Прыжок от стены
-        // if (wallJumpTimer > 0f)
-        // {
-        //     isWallJumping = true;
-        //     rb.velocity = new Vector2(wallJumpForce.x * wallJumpDirection, wallJumpForce.y);
-        //     wallJumpTimer = 0f;
+        //Прыжок от стены
+        if (Input.GetButtonDown("Jump") && (wallJumpTimer > 0f))
+        {
+            isWallJumping = true;
+            rb.velocity = new Vector2(wallJumpForce.x * wallJumpDirection, wallJumpForce.y);
+            wallJumpTimer = 0f;
 
-        //     if (transform.localScale.x != wallJumpDirection)
-        //     {
-        //         isFacingRight = !isFacingRight;
-        //         Vector3 ls = transform.localScale;
-        //         ls.x *= -1f;
-        //         transform.localScale = ls;
-        //     }
+            if (isFacingRight && wallJumpDirection < 0f || !isFacingRight && wallJumpDirection > 0f)
+            {
+                isFacingRight = !isFacingRight;
+                Vector3 ls = transform.localScale;
+                ls.x *= -1f;
+                transform.localScale = ls;
+            }
             
 
-        //     Invoke("CancelWallJump", wallJumpTime + 0.1f);
-        // }
+            Invoke(nameof(CancelWallJump), wallJumpTime + 0.1f);
+        }
     }
 
     void FlipSprite()
@@ -152,7 +155,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool WallCheck()
     {
-        if (Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer) && !Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, EnemyLayer)) //Если прилипает и если не к врагам
+        if (Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer))
         {
             return true;
         }
@@ -173,26 +176,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // private void WallJump()
-    // {
-    //     if (IsWallSliding)
-    //     {
-    //         isWallJumping = false;
-    //         wallJumpDirection = transform.localScale.x;
-    //         wallJumpTimer = wallJumpTime;
+    private void WallJump()
+    {
+        if (IsWallSliding)
+        {
+            isWallJumping = false;
+            wallJumpDirection = transform.localScale.x;
+            wallJumpTimer = wallJumpTime;
 
-    //         CancelInvoke("CancelWallJump");
-    //     }
-    //     else if (wallJumpTimer > 0f)
-    //     {
-    //         wallJumpTimer -= Time.deltaTime;
-    //     }
-    // }
+            CancelInvoke(nameof(CancelWallJump));
+        }
+        else if (wallJumpTimer > 0f)
+        {
+            wallJumpTimer -= Time.deltaTime;
+        }
+    }
 
-    // private void CancelWallJump()
-    // {
-    //     isWallJumping = false;
-    // }
+    private void CancelWallJump()
+    {
+        isWallJumping = false;
+    }
 
     private IEnumerator Dash()
     {
