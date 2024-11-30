@@ -1796,6 +1796,7 @@ GameObject:
   - component: {fileID: 338780054}
   - component: {fileID: 338780052}
   - component: {fileID: 338780053}
+  - component: {fileID: 338780057}
   m_Layer: 8
   m_Name: FlyingEnemy
   m_TagString: Untagged
@@ -1828,6 +1829,7 @@ MonoBehaviour:
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 2000316212}
   attackRange: 0.5
+  animator: {fileID: 338780057}
 --- !u!61 &338780053
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1968,6 +1970,27 @@ Transform:
   - {fileID: 2000316212}
   m_Father: {fileID: 1989389942}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &338780057
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338780051}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b3fac95e84ec714c9fc76a981b7367c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &371735617
 GameObject:
   m_ObjectHideFlags: 0
@@ -9524,7 +9547,7 @@ Transform:
   m_GameObject: {fileID: 634956153}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.78, y: -1.14, z: 0}
+  m_LocalPosition: {x: -4.78, y: 0.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12159,6 +12182,7 @@ GameObject:
   - component: {fileID: 1281842285}
   - component: {fileID: 1281842284}
   - component: {fileID: 1281842283}
+  - component: {fileID: 1281842287}
   m_Layer: 8
   m_Name: PatrolerEnemy1
   m_TagString: Untagged
@@ -12276,6 +12300,7 @@ MonoBehaviour:
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 1387551852}
   attackRange: 0.35
+  animator: {fileID: 1281842287}
 --- !u!212 &1281842286
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12319,7 +12344,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 3c21168053094734a9f23e654f04407e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -12328,6 +12353,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1281842287
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281842281}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 01cf3d7512228c849983897ec0c1aa4d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1311089875
 GameObject:
   m_ObjectHideFlags: 0
@@ -12883,7 +12929,7 @@ Transform:
   m_GameObject: {fileID: 1387551851}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.6, y: 0.04372993, z: -0.08485106}
+  m_LocalPosition: {x: 4.4, y: 0.04372993, z: -0.08485106}
   m_LocalScale: {x: 1.5202188, y: 1.7476406, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13972,6 +14018,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   wallSlideSpeed: 1
+  wallJumpForce: {x: 20.07, y: 7.93}
 --- !u!50 &1576820673
 Rigidbody2D:
   serializedVersion: 4
@@ -14008,7 +14055,7 @@ Transform:
   m_GameObject: {fileID: 1576820668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.07, y: 1.08, z: 0.05357785}
+  m_LocalPosition: {x: -7.42, y: 1.03, z: 0.05357785}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14126,7 +14173,7 @@ Transform:
   m_GameObject: {fileID: 1579857498}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.13, y: -0.03, z: 0}
+  m_LocalPosition: {x: -3.07, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

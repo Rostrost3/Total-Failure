@@ -2,39 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndHealth
+public class FlyingEnemy : MonoBehaviour, IDamageable //пїЅ пїЅпїЅпїЅпїЅпїЅ PlayerAttackAndHealth
 {
-    public float chillSpeed; // Скорость патрулирования
-    public float angrySpeed; // Скорость преследования
-    public float stopDistance = 2.0f; // Расстояние остановки при преследовании
-    public float positionOfPatrol = 3.0f; // Дистанция патрулирования
-    public Transform startingPoint; // Начальная точка для возвращения и патрулирования
-    private GameObject player; // Ссылка на игрока
+    public float chillSpeed; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public float angrySpeed; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public float stopDistance = 2.0f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public float positionOfPatrol = 3.0f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public Transform startingPoint; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    private GameObject player; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-    private float currentSpeed; // Текущая скорость
-    private bool movingRight = true; // Направление движения при патрулировании
+    private float currentSpeed; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    private bool movingRight = true; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    public bool chill = false; // Состояние патрулирования
-    public bool angry = false; // Состояние преследования
-    public bool goBack = false; // Состояние возвращения к начальной точке
+    public bool chill = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public bool angry = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public bool goBack = false; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
     public double health = 10;
     public double damage = 10;
 
     private float timeBtwAttack = 0f;
-    public float startTimeBtwAttack; //Сколько не может атаковать
+    public float startTimeBtwAttack; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    public Transform attackPos; //Круг, где ищем игрока
-    public float attackRange; //Диапазон круга
+    public Transform attackPos; //пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public float attackRange; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-    // Start вызывается перед первым кадром
+    [Header("Player Animation Settings")]
+    public Animator animator;
+
+    // Start пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        currentSpeed = chillSpeed; // Начальная скорость - патрулирование
+        currentSpeed = chillSpeed; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     }
 
-    // Update вызывается каждый кадр
+    // Update пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
     void Update()
     {
         if (player == null)
@@ -43,7 +46,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
             return;
         }
 
-        // Проверка состояний
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (Vector2.Distance(transform.position, startingPoint.position) < positionOfPatrol && !angry)
         {
             chill = true;
@@ -53,7 +56,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
         IsMovingRight();
         Flip();
             
-        // Выполнение действий в зависимости от текущего состояния
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (chill)
         {
             Chill();
@@ -76,11 +79,13 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
         }
 
         Attack();
+
+        animator.SetFloat("Speed", currentSpeed);
     }
 
     private void IsMovingRight()
     {
-        // Патрулирование влево-вправо
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ
         if (transform.position.x > startingPoint.position.x + positionOfPatrol)
         {
             movingRight = false;
@@ -93,7 +98,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
 
     private void Chase()
     {
-        // Преследование игрока
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         if(Vector2.Distance(transform.position, player.transform.position) > stopDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, currentSpeed * Time.deltaTime);
@@ -102,13 +107,13 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
 
     private void GoBack()
     {
-        // Возвращение к начальной точке
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         transform.position = Vector2.MoveTowards(transform.position, startingPoint.position, currentSpeed * Time.deltaTime);
     }
 
     private void Chill()
     {
-        // Движение в зависимости от направления
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (movingRight)
         {
             transform.position = new Vector2(transform.position.x + currentSpeed * Time.deltaTime, transform.position.y);
@@ -121,7 +126,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
 
     private void Flip()
     {
-        // Поворот в сторону игрока, если враг находится в состоянии "angry"
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "angry"
         if (angry)
         {
             if ((transform.position.x < player.transform.position.x && transform.localScale.x < 0) ||
@@ -132,7 +137,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
                 transform.localScale = scaler;
             }
         }
-        // Переворот врага в зависимости от направления движения
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         else if ((movingRight && transform.localScale.x < 0) || (!movingRight && transform.localScale.x > 0))
         {
             Vector3 scaler = transform.localScale;
@@ -149,7 +154,7 @@ public class FlyingEnemy : MonoBehaviour, IDamageable //В файле PlayerAttackAndH
     {
         if (timeBtwAttack <= 0)
         {
-            //Можно атаковать
+            //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Collider2D playerToDamage = Physics2D.OverlapCircle(attackPos.position, attackRange, LayerMask.GetMask("Player"));
             if (playerToDamage != null)
             {

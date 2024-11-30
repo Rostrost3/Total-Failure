@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHealth
+public class Patroler : MonoBehaviour, IDamageable //пїЅ пїЅпїЅпїЅпїЅпїЅ PlayerAttackAndHealth
 {
-    private float currentSpeed; // Скорость врага сейчас
-    public float chillSpeed; // Скорость при патрулировании
-    public float angrySpeed; // Скорость врага при агрессии
+    private float currentSpeed; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public float chillSpeed; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    public float angrySpeed; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
     public int positionOfPatrol;
     public Transform point;
-    bool movingRight; // Для поворота противника влево/вправо
+    bool movingRight; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅ
 
-    Transform player; // Для считывания позиции игрока
-    public float stoppingDistance; // Расстояние от противнка до героя
+    Transform player; // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public float stoppingDistance; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
     bool chill = false;
     bool angry = false;
@@ -24,10 +24,13 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
     public double damage = 10;
 
     private float timeBtwAttack = 0f;
-    public float startTimeBtwAttack; //Сколько не может атаковать
+    public float startTimeBtwAttack; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
-    public Transform attackPos; //Круг, где ищем игрока
-    public float attackRange; //Диапазон круга
+    public Transform attackPos; //пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    public float attackRange; //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+
+    [Header("Player Animation Settings")]
+    public Animator animator;
 
 
     // Start is called before the first frame update
@@ -81,10 +84,35 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
         }
 
         Attack();
+
+        Flip();
+
+        animator.SetFloat("Speed", currentSpeed);
     }
 
+    private void Flip()
+    {
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ "angry"
+        if (angry)
+        {
+            if ((transform.position.x < player.transform.position.x && transform.localScale.x < 0) ||
+                (transform.position.x > player.transform.position.x && transform.localScale.x > 0))
+            {
+                Vector3 scaler = transform.localScale;
+                scaler.x *= -1;
+                transform.localScale = scaler;
+            }
+        }
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+        else if ((movingRight && transform.localScale.x < 0) || (!movingRight && transform.localScale.x > 0))
+        {
+            Vector3 scaler = transform.localScale;
+            scaler.x *= -1;
+            transform.localScale = scaler;
+        }
+    }
 
-    // Что делает на дефолте
+    // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     void Chill()
     {
         if (transform.position.x > point.position.x + positionOfPatrol)
@@ -107,14 +135,14 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
     }
 
     
-    // Что происходит, если близко подойти
+    // пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     void Angry()
     {
         transform.position = Vector2.MoveTowards(transform.position, player.position, currentSpeed * Time.deltaTime);
     }
 
 
-    // Отход назад, если далеко отошел от врага
+    // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     void GoBack()
     {
         transform.position = Vector2.MoveTowards(transform.position, point.position, currentSpeed * Time.deltaTime);
@@ -129,7 +157,7 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
     {
         if (timeBtwAttack <= 0)
         {
-            //Можно атаковать
+            //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Collider2D playerToDamage = Physics2D.OverlapCircle(attackPos.position, attackRange, LayerMask.GetMask("Player"));
             if(playerToDamage != null)
             {
@@ -150,3 +178,5 @@ public class Patroler : MonoBehaviour, IDamageable //В файле PlayerAttackAndHeal
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 }
+
+
