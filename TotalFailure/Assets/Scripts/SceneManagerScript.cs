@@ -14,6 +14,8 @@ public class SceneManagerScript : MonoBehaviour
     [SerializeField] Slider volumeSlider = null;
     [SerializeField] TextMeshProUGUI volumeTextUI = null;
 
+    public GameObject SettingsMenu;
+
     private void Start()
     {
         resolutionDropdown.ClearOptions();
@@ -46,9 +48,14 @@ public class SceneManagerScript : MonoBehaviour
         SceneManager.LoadScene("LVL1.2");
     }
 
+    public void ToSettings()
+    {
+        SettingsMenu.SetActive(true);
+    }
+
     public void ToMainMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SettingsMenu.SetActive(false);
     }
 
     public void GameExit()
