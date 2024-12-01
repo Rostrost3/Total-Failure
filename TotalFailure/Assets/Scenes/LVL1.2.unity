@@ -396,7 +396,7 @@ MonoBehaviour:
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 1121621946}
-  attackRange: 0.7
+  attackRange: 0.6
   isAttack: 0
   healthBar: {fileID: 1713596947}
   groundCheckPos: {fileID: 742084250}
@@ -2715,7 +2715,7 @@ MonoBehaviour:
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 967564801}
-  attackRange: 0.7
+  attackRange: 0.6
   isAttack: 0
   healthBar: {fileID: 1393585933}
   groundCheckPos: {fileID: 294088663}
@@ -15190,7 +15190,7 @@ Transform:
   m_GameObject: {fileID: 804677689}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.36, y: 0.43, z: -0.08485106}
+  m_LocalPosition: {x: -3.13, y: -0.14, z: -0.08485106}
   m_LocalScale: {x: 1.5202188, y: 1.7476406, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16700,7 +16700,7 @@ Transform:
   m_GameObject: {fileID: 967564800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.36, y: 0.43, z: -0.08485106}
+  m_LocalPosition: {x: -3.19, y: 0.21, z: -0.08485106}
   m_LocalScale: {x: 1.5202188, y: 1.7476406, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17977,7 +17977,7 @@ Transform:
   m_GameObject: {fileID: 1121621945}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.36, y: 0.43, z: -0.08485106}
+  m_LocalPosition: {x: -3.12, y: -0.13, z: -0.08485106}
   m_LocalScale: {x: 1.5202188, y: 1.7476406, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20250,7 +20250,7 @@ MonoBehaviour:
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 1387551852}
-  attackRange: 0.7
+  attackRange: 0.6
   isAttack: 0
   healthBar: {fileID: 896909441}
   groundCheckPos: {fileID: 1167574537}
@@ -21070,7 +21070,7 @@ MonoBehaviour:
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 804677690}
-  attackRange: 0.7
+  attackRange: 0.6
   isAttack: 0
   healthBar: {fileID: 2050044549}
   groundCheckPos: {fileID: 1412167569}
@@ -21679,7 +21679,7 @@ Transform:
   m_GameObject: {fileID: 1387551851}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.36, y: 0.43, z: -0.08485106}
+  m_LocalPosition: {x: -3.1, y: 0.07, z: -0.08485106}
   m_LocalScale: {x: 1.5202188, y: 1.7476406, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23942,12 +23942,12 @@ MonoBehaviour:
   bar: {fileID: 1097232541}
   fill: 1
   attackPos: {fileID: 634956154}
-  attackRange: 0.55
+  attackRange: 0.6
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 256
-  max_health: 10
-  current_health: 10
+  max_health: 15
+  current_health: 15
   damage: 1
   groundCheckPos: {fileID: 526534865}
   groundCheckSize: {x: 0.64, y: 0.5}
@@ -26872,7 +26872,7 @@ Transform:
   m_GameObject: {fileID: 1834382400}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.36, y: 0.43, z: -0.08485106}
+  m_LocalPosition: {x: -3.19, y: -0.01, z: -0.08485106}
   m_LocalScale: {x: 1.5202188, y: 1.7476406, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27239,7 +27239,7 @@ MonoBehaviour:
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 1834382401}
-  attackRange: 0.7
+  attackRange: 0.6
   isAttack: 0
   healthBar: {fileID: 1800204295}
   groundCheckPos: {fileID: 1034909480}
