@@ -25,7 +25,7 @@ public class SceneManagerScript : MonoBehaviour
 
         for(int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + "x" + resolutions[i].height + " "  + resolutions[i].refreshRateRatio + "Hz";
+            string option = resolutions[i].width + "x" + resolutions[i].height;
             options.Add(option);
             if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
             {
