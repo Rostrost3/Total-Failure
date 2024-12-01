@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform wallCheckPos;
     public Vector2 wallCheckSize = new Vector2(0.5f, 0.05f);
     public LayerMask wallLayer;
+    public LayerMask EnemyLayer;
 
     [Header("WallMovement")]
     public float wallSlideSpeed = 1f;
@@ -155,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool WallCheck()
     {
-        if (Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer))
+        if (Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, wallLayer) && !Physics2D.OverlapBox(wallCheckPos.position, wallCheckSize, 0, EnemyLayer))
         {
             return true;
         }

@@ -41,6 +41,8 @@ public class Patroler : MonoBehaviour, IDamageable //� ����� PlayerA
     [Header("Player Animation Settings")]
     public Animator animator;
 
+    public WinMenu menu;
+
 
 
     // Start is called before the first frame update
@@ -89,10 +91,9 @@ public class Patroler : MonoBehaviour, IDamageable //� ����� PlayerA
             currentSpeed = chillSpeed;
         }
 
-        if(current_health <= 0)
+        if (current_health <= 0)
         {
             Destroy(gameObject);
-            
         }
 
         Attack();
