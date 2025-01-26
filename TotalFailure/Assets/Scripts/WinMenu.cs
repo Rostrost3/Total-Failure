@@ -20,10 +20,5 @@ public class WinMenu : MonoBehaviour
             onWinMenu.SetActive(true);
             Time.timeScale = 0;
         }
-        else
-        {
-            onWinMenu.SetActive(false);
-            Time.timeScale = 1;
-        }
     }
 }

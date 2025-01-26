@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,12 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseGameMenu;
     public bool PauseGame;
-    
+
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
+
     // Update is called once per frame
     void Update()
     {
