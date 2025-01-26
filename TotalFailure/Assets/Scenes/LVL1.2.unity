@@ -963,7 +963,7 @@ GameObject:
   - component: {fileID: 34058892}
   - component: {fileID: 34058894}
   - component: {fileID: 34058893}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChaseTriggerForFlyingEnemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3841,7 +3841,7 @@ GameObject:
   - component: {fileID: 317329880}
   - component: {fileID: 317329882}
   - component: {fileID: 317329881}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChaseTriggerForFlyingEnemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19947,7 +19947,7 @@ GameObject:
   - component: {fileID: 1274147398}
   - component: {fileID: 1274147400}
   - component: {fileID: 1274147399}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChaseTriggerForFlyingEnemy3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
