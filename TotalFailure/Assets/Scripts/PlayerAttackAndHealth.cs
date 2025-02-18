@@ -10,7 +10,12 @@ public interface IDamageable
     void TakeDamage(double damage);
 }
 
-public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
+public interface IHealth
+{
+    void TakeHealth(double health);
+}
+
+public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth
 {
     private float timeBtwAttack = 0f;
     public float startTimeBtwAttack; //Сколько не может атаковать
@@ -87,6 +92,13 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable
     public void TakeDamage(double damage)
     {
         current_health -= damage;
+        fill = (float)(current_health / max_health);
+        bar.fillAmount = fill;
+    }
+
+    public void TakeHealth(double health)
+    {
+        current_health += health;
         fill = (float)(current_health / max_health);
         bar.fillAmount = fill;
     }
