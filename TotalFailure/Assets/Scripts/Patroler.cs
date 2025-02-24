@@ -43,7 +43,7 @@ public class Patroler : MonoBehaviour, IDamageable //� ����� PlayerA
 
     public WinMenu menu;
 
-
+    public bool isDropHeart = false;
 
     // Start is called before the first frame update
     void Start()
