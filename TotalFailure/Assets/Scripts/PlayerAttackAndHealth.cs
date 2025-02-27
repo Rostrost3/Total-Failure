@@ -14,8 +14,12 @@ public interface IHealth
 {
     void TakeHealth(double health);
 }
+public interface ITakeKeys
+{
+    void TakeKey();
+}
 
-public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth
+public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeKeys
 {
     private float timeBtwAttack = 0f;
     public float startTimeBtwAttack; //Сколько не может атаковать
@@ -40,6 +44,8 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth
     public DeathMenu deathMenu;
 
     private Vector2 playerPos; //Для запоминания позиции игрока
+
+    public int countOfKeys = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -119,4 +125,9 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth
         Gizmos.DrawWireSphere(attackPos.position, attackRange);
     }
 
+    public void TakeKey()
+    {
+        countOfKeys++;
+    }
+    public void SpendKey() { countOfKeys = 0; }
 }
