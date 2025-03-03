@@ -21985,6 +21985,7 @@ GameObject:
   - component: {fileID: 1352509980}
   - component: {fileID: 1352509982}
   - component: {fileID: 1352509981}
+  - component: {fileID: 1352509983}
   m_Layer: 5
   m_Name: DialogueBox
   m_TagString: Untagged
@@ -22050,6 +22051,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352509979}
   m_CullTransparentMesh: 1
+--- !u!114 &1352509983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352509979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6680bc98d036f1342851ea8f3a37c52b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 282810079}
+  lines:
+  - "\u041D\u0443\u0436\u043D\u043E \u043D\u0430\u0439\u0442\u0438 \u043A\u043B\u044E\u0447,
+    \u0447\u0442\u043E\u0431\u044B \u043F\u0440\u043E\u0439\u0442\u0438 \u0434\u0430\u043B\u044C\u0448\u0435 "
+  - "\u041D\u0430\u0432\u0435\u0440\u043D\u044F\u043A\u0430 \u0443 \u043A\u043E\u0433\u043E
+    \u0442\u043E \u0438\u0437 \u043C\u043E\u043D\u0441\u0442\u0440\u043E\u0432 \u043E\u043D
+    \u0431\u0443\u0434\u0435\u0442"
+  textSpeed: 0.15
 --- !u!1 &1361548233
 GameObject:
   m_ObjectHideFlags: 0
@@ -24325,6 +24346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdcbdd68e0e1704ab47fb777b035b89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDialogueActive: 0
   animator: {fileID: 1576820675}
   groundCheckPos: {fileID: 526534865}
   groundCheckSize: {x: 0.64, y: 0.05}
