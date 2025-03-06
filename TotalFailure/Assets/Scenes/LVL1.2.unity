@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 24723226}
   m_Layer: 8
   m_Name: PatrolerEnemy4
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -965,7 +965,7 @@ GameObject:
   - component: {fileID: 34058892}
   - component: {fileID: 34058894}
   - component: {fileID: 34058893}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: ChaseTriggerForFlyingEnemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1182,7 +1182,7 @@ GameObject:
   - component: {fileID: 69609687}
   m_Layer: 8
   m_Name: FlyingEnemy3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2579,7 +2579,7 @@ GameObject:
   - component: {fileID: 229207784}
   m_Layer: 8
   m_Name: PatrolerEnemy3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3845,7 +3845,7 @@ GameObject:
   - component: {fileID: 317329880}
   - component: {fileID: 317329882}
   - component: {fileID: 317329881}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: ChaseTriggerForFlyingEnemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3942,7 +3942,7 @@ GameObject:
   - component: {fileID: 338780058}
   m_Layer: 8
   m_Name: FlyingEnemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6064,7 +6064,7 @@ GameObject:
   - component: {fileID: 504907812}
   m_Layer: 8
   m_Name: FlyingEnemy2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20248,7 +20248,7 @@ GameObject:
   - component: {fileID: 1274147398}
   - component: {fileID: 1274147400}
   - component: {fileID: 1274147399}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: ChaseTriggerForFlyingEnemy3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20434,7 +20434,7 @@ GameObject:
   - component: {fileID: 1281842287}
   m_Layer: 8
   m_Name: PatrolerEnemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20904,6 +20904,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292184623}
   m_CullTransparentMesh: 1
+--- !u!1 &1294150455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1294150456}
+  m_Layer: 7
+  m_Name: ShotPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1294150456
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1294150455}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1868153677}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1296614997
 GameObject:
   m_ObjectHideFlags: 0
@@ -21235,7 +21266,7 @@ GameObject:
   - component: {fileID: 1328147209}
   m_Layer: 8
   m_Name: PatrolerEnemy5
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24173,6 +24204,7 @@ Transform:
   - {fileID: 526534865}
   - {fileID: 1579857499}
   - {fileID: 634956154}
+  - {fileID: 1868153677}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1576820675
@@ -27335,6 +27367,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 504907816}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1868153676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1868153677}
+  - component: {fileID: 1868153678}
+  m_Layer: 7
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1868153677
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868153676}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.81, y: -1.08, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1294150456}
+  m_Father: {fileID: 1576820674}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1868153678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1868153676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39979cc40d62654c9a25ec2d2ce54ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: 0
+  projectile: {fileID: 796857910728115382, guid: cfd91a28e9abcc243bb630d0cb459c0e, type: 3}
+  shotPoint: {fileID: 1294150456}
+  startTimeBtwShots: 0.5
 --- !u!1 &1899516880
 GameObject:
   m_ObjectHideFlags: 0
@@ -27407,7 +27488,7 @@ GameObject:
   - component: {fileID: 1906176282}
   m_Layer: 8
   m_Name: PatrolerEnemy2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
