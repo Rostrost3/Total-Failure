@@ -24296,6 +24296,7 @@ MonoBehaviour:
     m_Bits: 1
   deathMenu: {fileID: 676995794}
   countOfKeys: 0
+  CountOfShots: 0
 --- !u!1 &1578197378
 GameObject:
   m_ObjectHideFlags: 0
@@ -27415,7 +27416,8 @@ MonoBehaviour:
   offset: 0
   projectile: {fileID: 796857910728115382, guid: cfd91a28e9abcc243bb630d0cb459c0e, type: 3}
   shotPoint: {fileID: 1294150456}
-  startTimeBtwShots: 0.5
+  startTimeBtwShots: 1
+  player: {fileID: 1576820677}
 --- !u!1 &1899516880
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,6 +11,8 @@ public class Weapon : MonoBehaviour
     private float timeBtwShots;
     public float startTimeBtwShots;
 
+    public PlayerAttackAndHealth player;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,13 +30,23 @@ public class Weapon : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1))
             {
-                Instantiate(projectile, shotPoint.position, transform.rotation);
-                timeBtwShots = startTimeBtwShots;
+                if(player.CountOfShots <= 5)
+                {
+                    Instantiate(projectile, shotPoint.position, transform.rotation);
+                    timeBtwShots = startTimeBtwShots;
+                    ++player.CountOfShots;
+                }
+                else
+                {
+                    //Диалог выводить
+                }
+
             }
         }
         else
         {
             timeBtwShots -= Time.deltaTime;
         }
+        
     }
 }
