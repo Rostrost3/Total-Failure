@@ -47,6 +47,9 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
 
     public int countOfKeys = 0;
 
+    //Счётик выстрелов
+    public float CountOfShots;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,6 +87,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
                     {
                         damageable.TakeDamage(damage);
                         Debug.Log("Attack!");
+                        CountOfShots = 1; //После ближней атаки сбрасываем счётчик
                     }
                 }
                 timeBtwAttack = startTimeBtwAttack;
