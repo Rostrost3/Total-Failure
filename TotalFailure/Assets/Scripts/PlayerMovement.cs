@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
     bool isFacingRight = false;
+    public bool isDialogueActive = false;
+
 
     [Header("Player Animation Settings")]
     public Animator animator;
@@ -13,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     float moveSpeed = 5f;
     float horizontalInput;
+    
 
     [Header("Jumping")]
     float jumpPower = 6f;
@@ -71,8 +74,9 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("WallSlide", IsWallSliding);
 
         animator.SetBool("Attack", Input.GetMouseButtonDown(0));
-
-         horizontalInput = Input.GetAxis("Horizontal"); //���� ��� �����
+        if (!isDialogueActive) { horizontalInput = Input.GetAxis("Horizontal"); }
+        else { horizontalInput = 0f; }
+          //���� ��� �����
         
         if (!isWallJumping)
         {   
@@ -88,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
         WallJump(); //Прыжок от стены
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash && !isDialogueActive)
         {
             StartCoroutine(Dash()); //���������
         }
@@ -96,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (isGrounded()) //���� �� �����
+        if (isGrounded() && !isDialogueActive) //���� �� �����
         {
             if (Input.GetButtonDown("Jump"))
             {
