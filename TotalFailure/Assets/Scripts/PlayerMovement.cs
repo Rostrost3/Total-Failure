@@ -13,12 +13,12 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     [Header("Movement")]
-    float moveSpeed = 5f;
+    float moveSpeed = 7f;
     float horizontalInput;
     
 
     [Header("Jumping")]
-    float jumpPower = 6f;
+    float jumpPower = 7f;
     float fallMultiplier = 2.5f;
     float lowJumpMultiplier = 2f;
 
