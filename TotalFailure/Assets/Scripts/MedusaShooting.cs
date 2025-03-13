@@ -11,11 +11,16 @@ public class MedusaShooting : MonoBehaviour
     private float timer;
     private GameObject player;
 
+    public MedusaMovement medusa;
+
+    private bool isShooting;
+
     // Start is called before the first frame update
     void Start()
     {
         timer = 0;
         player = GameObject.FindGameObjectWithTag("Player");
+        isShooting = false;
     }
 
     // Update is called once per frame
@@ -25,10 +30,13 @@ public class MedusaShooting : MonoBehaviour
 
         if(distance < 6)
         {
-            if(timer <= 0)
+            if(timer <= 0 && !isShooting)
             {
+                isShooting = true;
+                medusa.IsShooting = true;
                 Shoot();
                 Invoke("Shoot", 0.5f);
+                StartCoroutine(ResetShooting());
                 timer = startTimer;
             }
             else
@@ -41,5 +49,12 @@ public class MedusaShooting : MonoBehaviour
     void Shoot()
     {   
         Instantiate(arrow, arrowPos.position, Quaternion.identity);
+    }
+
+    IEnumerator ResetShooting()
+    {
+        yield return new WaitForSeconds(1f); // Через секунду после атаки перестаёт целиться в игрока
+        isShooting = false;
+        medusa.IsShooting = false;
     }
 }

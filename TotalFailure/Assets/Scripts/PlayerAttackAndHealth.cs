@@ -108,7 +108,14 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
 
     public void TakeHealth(double health)
     {
-        current_health += health;
+        if ((current_health + health) >= max_health)
+        {
+            current_health = max_health;
+        }
+        else
+        {
+            current_health += health;
+        }
         fill = (float)(current_health / max_health);
         bar.fillAmount = fill;
     }

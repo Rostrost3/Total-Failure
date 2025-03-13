@@ -22,9 +22,9 @@ public class MedusaArrow : MonoBehaviour
         rb.velocity = new Vector2 (direction.x, direction.y).normalized * force;
 
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot + 160);
+        transform.rotation = Quaternion.Euler(0, 0, rot + 140);
 
-        Invoke("DestroyProjectile", lifeTime);
+        Invoke("DestroyArrow", lifeTime);
     }
 
     // Update is called once per frame
@@ -32,21 +32,22 @@ public class MedusaArrow : MonoBehaviour
     {
 
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.right, distance, whatIsSolid); //Невидимая линия, начальная точка, в какую сторону, длина и с какой маской должна столкнуться
+        Debug.Log(hitInfo.collider);
         if (hitInfo.collider != null)
         {
-            if (hitInfo.collider.CompareTag("Enemy"))
+            if (hitInfo.collider.CompareTag("Player"))
             {
-                IDamageable enemy = hitInfo.collider.GetComponent<IDamageable>();
-                if (enemy != null)
+                IDamageable playerHealth = hitInfo.collider.GetComponent<IDamageable>();
+                if (playerHealth != null)
                 {
-                    enemy.TakeDamage(damage);
+                    playerHealth.TakeDamage(damage);
                 }
             }
-            DestroyProjectile();
+            DestroyArrow();
         }
     }
 
-    void DestroyProjectile()
+    void DestroyArrow()
     {
         Destroy(gameObject);
     }

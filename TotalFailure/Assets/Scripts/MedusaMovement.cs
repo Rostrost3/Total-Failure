@@ -15,8 +15,9 @@ public class MedusaMovement : MonoBehaviour, IDamageable
     public float stoppingDistance;
 
     bool chill = true;
-    bool angry = false;
     bool goBack = false;
+
+    public bool IsShooting = false;
 
     public double max_health = 10;
     public double current_health = 10;
@@ -45,14 +46,16 @@ public class MedusaMovement : MonoBehaviour, IDamageable
         {
             goBack = true;
         }
-
+        else
+        {
+            goBack= false;
+        }
 
         if (chill == true)
         {
             Chill();
             currentSpeed = chillSpeed;
         }
-
         else if (goBack == true)
         {
             GoBack();
@@ -107,23 +110,28 @@ public class MedusaMovement : MonoBehaviour, IDamageable
 
     private void Flip()
     {
-        if (angry)
+        if (IsShooting)
         {
-            if ((transform.position.x < player.transform.position.x && transform.localScale.x > 0) ||
-                (transform.position.x > player.transform.position.x && transform.localScale.x < 0))
+            if ((player.position.x < transform.position.x && transform.localScale.x < 0) ||
+                (player.position.x > transform.position.x && transform.localScale.x > 0))
             {
                 Vector3 scaler = transform.localScale;
                 scaler.x *= -1;
                 transform.localScale = scaler;
             }
         }
-        else if ((movingRight && transform.localScale.x > 0) || (!movingRight && transform.localScale.x < 0))
+        else
         {
-            Vector3 scaler = transform.localScale;
-            scaler.x *= -1;
-            transform.localScale = scaler;
+            if ((movingRight && transform.localScale.x > 0) || (!movingRight && transform.localScale.x < 0))
+            {
+                Vector3 scaler = transform.localScale;
+                scaler.x *= -1;
+                transform.localScale = scaler;
+            }
         }
     }
+
+
 
     private void OnDrawGizmosSelected()
     {
