@@ -28,7 +28,7 @@ public class MedusaShooting : MonoBehaviour
     {
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
-        if(distance < 6)
+        if(distance < 10)
         {
             if(timer <= 0 && !isShooting)
             {

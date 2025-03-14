@@ -125,10 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1384bae737d0e3a4a89c1aefd8d6a837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 5
-  damage: 1
+  force: 8
+  damage: 7
   lifeTime: 1.5
-  distance: 0.5
+  distance: 1
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 128

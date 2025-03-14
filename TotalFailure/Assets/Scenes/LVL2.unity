@@ -38793,8 +38793,8 @@ MonoBehaviour:
   point: {fileID: 1921209916}
   stoppingDistance: 6
   IsShooting: 0
-  max_health: 5
-  current_health: 5
+  max_health: 30
+  current_health: 30
   healthBar: {fileID: 128446192}
   groundCheckPos: {fileID: 543681360}
   groundCheckSize: {x: 0.6, y: 0.05}
