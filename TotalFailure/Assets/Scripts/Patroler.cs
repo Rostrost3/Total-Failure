@@ -95,6 +95,7 @@ public class Patroler : MonoBehaviour, IDamageable //� ����� PlayerA
         if (current_health <= 0)
         {
             Destroy(gameObject);
+            TrapChest.EnemyKilled();
         }
 
         Attack();

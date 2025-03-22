@@ -69,7 +69,7 @@ public class MedusaMovement : MonoBehaviour, IDamageable
 
         Flip();
 
-        //animator.SetFloat("Speed", currentSpeed);
+        animator.SetFloat("Speed", currentSpeed);
 
         //animator.SetBool("Attack", isAttack);
     }
