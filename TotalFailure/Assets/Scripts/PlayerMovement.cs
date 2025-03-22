@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Dashing")]
     float dashSpeed = 15f;
-    float dashDuration = 0.15f;
+    float dashDuration = 0.25f; //0.15f
     float dashCooldown = 0.5f;
     bool isDashing;
     bool canDash = true;
