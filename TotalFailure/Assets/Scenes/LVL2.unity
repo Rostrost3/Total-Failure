@@ -40730,6 +40730,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1220575660510389035, guid: 2236b0b6114206741af908c4a0c51def, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1220575660510389035, guid: 2236b0b6114206741af908c4a0c51def, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 21.27
+      objectReference: {fileID: 0}
     - target: {fileID: 3466116855940699448, guid: 2236b0b6114206741af908c4a0c51def, type: 3}
       propertyPath: m_LocalPosition.x
       value: -67.54
@@ -40775,7 +40783,8 @@ PrefabInstance:
       value: Patroler1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7550382680961840803, guid: 2236b0b6114206741af908c4a0c51def, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2236b0b6114206741af908c4a0c51def, type: 3}

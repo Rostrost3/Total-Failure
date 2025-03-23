@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class TrapChest : MonoBehaviour
 {
-    public GameObject enemyPrefab; // Префаб противника
-    public Transform spawnPoint; // Точка спавна противника
-    private bool isActivated = false; // Флаг активации сундука
-    private static bool isEnemyAlive = false; // Флаг наличия живого противника
+    public GameObject enemyPrefab;
+    public Transform spawnPoint;
+    private bool isActivated = false;
+    private static bool isEnemyAlive = false;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && !isActivated && !isEnemyAlive)
+        if (Input.GetKeyDown(KeyCode.E) && !isActivated && !isEnemyAlive)
         {
             ActivateTrap();
         }
@@ -22,7 +22,19 @@ public class TrapChest : MonoBehaviour
     {
         isActivated = true;
         isEnemyAlive = true;
-        Instantiate(enemyPrefab, (Vector2)spawnPoint.position, spawnPoint.rotation);
+
+        float offset = 4f;
+
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position + new Vector3(i * offset, 0, 0), spawnPoint.rotation);
+
+            GameObject newPoint = new GameObject("PatrolerPoint1");
+            newPoint.transform.position = spawnPoint.position + new Vector3(i * offset, 0, 0); // Смещаем точку
+
+            Patroler patroler = enemy.GetComponent<Patroler>();
+            patroler.point = newPoint.transform;
+        }
     }
 
     public static void EnemyKilled()
