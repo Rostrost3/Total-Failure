@@ -5387,7 +5387,7 @@ GameObject:
   - component: {fileID: 480636737}
   - component: {fileID: 480636736}
   - component: {fileID: 480636735}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: door_bronse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24158,13 +24158,13 @@ MonoBehaviour:
   bar: {fileID: 1097232541}
   fill: 1
   attackPos: {fileID: 634956154}
-  attackRange: 10
+  attackRange: 0.7
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 256
   max_health: 15
   current_health: 15
-  damage: 10
+  damage: 1.5
   groundCheckPos: {fileID: 526534865}
   groundCheckSize: {x: 0.64, y: 0.5}
   spikesLayer:

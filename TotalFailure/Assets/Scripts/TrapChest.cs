@@ -8,11 +8,11 @@ public class TrapChest : MonoBehaviour
     public Transform spawnPoint;
     public float activationDistance = 3f; // ћаксимальное рассто€ние дл€ активации
 
-    private bool isActivated = false;
-    private static bool isEnemyAlive = false;
+    public bool isActivated = false;
+    public static bool isEnemyAlive = false;
     private Transform playerTransform;
 
-
+    public bool isDropKey = false;
 
 
     void Start()
@@ -31,7 +31,10 @@ public class TrapChest : MonoBehaviour
         if (Vector3.Distance(playerTransform.position, transform.position) <= activationDistance &&
             Input.GetKeyDown(KeyCode.E) && !isActivated && !isEnemyAlive)
         {
-            ActivateTrap();
+            if(!isDropKey)
+            {
+                ActivateTrap();
+            }
         }
     }
 
