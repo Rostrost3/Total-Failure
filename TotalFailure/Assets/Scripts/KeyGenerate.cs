@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class KeyGenerate : MonoBehaviour
 {
-    public List<Patroler> patrolerList;
+    public List<EnemyClass> EnemiesList;
     
     //private List<Vector2> positionPatrolersList = new List<Vector2>();
     private Vector2 positionPatroler;
@@ -16,9 +16,9 @@ public class KeyGenerate : MonoBehaviour
     void Start()
     {
         keyObject.SetActive(false);
-        indexOfEnemyWithKey = Random.Range(0, patrolerList.Count);
-        patrolerList[indexOfEnemyWithKey].isDropKey = true;
-        positionPatroler = patrolerList[indexOfEnemyWithKey].transform.position;
+        indexOfEnemyWithKey = Random.Range(0, EnemiesList.Count);
+        EnemiesList[indexOfEnemyWithKey].isDropKey = true;
+        positionPatroler = EnemiesList[indexOfEnemyWithKey].transform.position;
     }
 
 
@@ -26,15 +26,15 @@ public class KeyGenerate : MonoBehaviour
     {
         if (keyObject != null)
         {
-            if (patrolerList[indexOfEnemyWithKey] == null)
+            if (EnemiesList[indexOfEnemyWithKey] == null)
             {
-                patrolerList[indexOfEnemyWithKey].isDropKey = false;
+                EnemiesList[indexOfEnemyWithKey].isDropKey = false;
                 keyObject.SetActive(true);
                 keyObject.transform.position = positionPatroler;
             }
             else
             {
-                positionPatroler = patrolerList[indexOfEnemyWithKey].transform.position;
+                positionPatroler = EnemiesList[indexOfEnemyWithKey].transform.position;
             }
         }
         

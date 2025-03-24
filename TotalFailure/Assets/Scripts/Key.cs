@@ -5,42 +5,36 @@ using UnityEngine;
 
 public class Key : MonoBehaviour
 {
-    public TextMeshProUGUI messageText;
+    private Transform playerTransform;
+    public float activationDistance = 1f;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void Start()
     {
-        if (collision.CompareTag("Player"))
-        {
-            var player = collision.GetComponent<ITakeKeys>();
-            if (player != null)
-            {
 
-                player.TakeKey();
-                Destroy(gameObject);
-                //gameObject.SetActive(false);
-            }
-        }
-            
+        playerTransform = GameObject.FindWithTag("Player").transform; // Получаем ссылку на игрока
     }
 
 
-    private void ShowMessage(string text)
+    private void Update()
     {
-        if (messageText != null)
+        var player = playerTransform.GetComponent<ITakeKeys>();
+
+        if (Vector3.Distance(playerTransform.position, transform.position) <= activationDistance)
         {
-            messageText.text = text;
-            messageText.gameObject.SetActive(true);
-            CancelInvoke(nameof(HideMessage));
-            Invoke(nameof(HideMessage), 2f);
+            UIMessageManager.Instance.ShowMessage("Press E to collect the key.");
         }
+
+        if (Vector3.Distance(playerTransform.position, transform.position) <= activationDistance &&
+            Input.GetKeyDown(KeyCode.E))
+        {
+            UIMessageManager.Instance.ShowMessage("You collected the key!", 2f);
+
+            player.TakeKey();
+
+            Destroy(gameObject);
+        }
+        
     }
 
-    private void HideMessage()
-    {
-        if (messageText != null)
-        {
-            messageText.gameObject.SetActive(false);
-        }
-    }
     
 }

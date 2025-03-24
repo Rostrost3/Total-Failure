@@ -12,11 +12,11 @@ public class DoorScript : MonoBehaviour
     public TextMeshProUGUI messageText;
 
 
-    private void Start()
+    /*private void Start()
     {
         if (messageText != null)
             messageText.gameObject.SetActive(false); 
-    }
+    }*/
 
 
 
@@ -33,7 +33,6 @@ public class DoorScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerNear = false;
-            HideMessage();
         }
     }
 
@@ -48,8 +47,9 @@ public class DoorScript : MonoBehaviour
             }
             else
             {
-                Debug.Log("Собраны не все ключи!");
-                ShowMessage("You didn't collect all the keys!");
+                UIMessageManager.Instance.ShowMessage("You didn't collect all the keys!", 2f);
+                /*Debug.Log("Собраны не все ключи!");
+                ShowMessage("You didn't collect all the keys!");*/
             }
         }
     }
@@ -67,7 +67,7 @@ public class DoorScript : MonoBehaviour
         }
     }
 
-    private void ShowMessage(string text)
+    /*private void ShowMessage(string text)
     {
         if (messageText != null)
         {
@@ -84,5 +84,5 @@ public class DoorScript : MonoBehaviour
         {
             messageText.gameObject.SetActive(false);
         }
-    }
+    }*/
 }

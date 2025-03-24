@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MedusaMovement : MonoBehaviour, IDamageable
+public class MedusaMovement : EnemyClass, IDamageable
 {
     private float currentSpeed;
     public float chillSpeed;
