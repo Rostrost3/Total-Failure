@@ -23,6 +23,11 @@ public class TrapChest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Vector3.Distance(playerTransform.position, transform.position) <= activationDistance)
+        {
+            UIMessageManager.Instance.ShowMessage("Press E to open the chest");
+        }
         if (Vector3.Distance(playerTransform.position, transform.position) <= activationDistance &&
             Input.GetKeyDown(KeyCode.E) && !isActivated && !isEnemyAlive)
         {
