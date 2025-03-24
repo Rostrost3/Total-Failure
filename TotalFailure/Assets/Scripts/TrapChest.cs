@@ -6,13 +6,25 @@ public class TrapChest : MonoBehaviour
 {
     public GameObject enemyPrefab;
     public Transform spawnPoint;
+    public float activationDistance = 3f; // Максимальное расстояние для активации
+
     private bool isActivated = false;
     private static bool isEnemyAlive = false;
+    private Transform playerTransform;
+
+
+
+
+    void Start()
+    {
+        playerTransform = GameObject.FindWithTag("Player").transform; // Получаем ссылку на игрока
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !isActivated && !isEnemyAlive)
+        if (Vector3.Distance(playerTransform.position, transform.position) <= activationDistance &&
+            Input.GetKeyDown(KeyCode.E) && !isActivated && !isEnemyAlive)
         {
             ActivateTrap();
         }

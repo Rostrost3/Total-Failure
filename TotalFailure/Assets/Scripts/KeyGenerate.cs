@@ -6,6 +6,7 @@ using UnityEngine;
 public class KeyGenerate : MonoBehaviour
 {
     public List<Patroler> patrolerList;
+    
     //private List<Vector2> positionPatrolersList = new List<Vector2>();
     private Vector2 positionPatroler;
     public GameObject keyObject;
