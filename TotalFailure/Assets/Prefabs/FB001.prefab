@@ -103,4 +103,4 @@ MonoBehaviour:
   distance: 0.5
   whatIsSolid:
     serializedVersion: 2
-    m_Bits: 257
+    m_Bits: 289
