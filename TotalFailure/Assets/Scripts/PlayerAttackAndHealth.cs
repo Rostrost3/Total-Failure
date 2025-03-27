@@ -139,6 +139,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
     public void TakeKey()
     {
         countOfKeys++;
+
     }
     public void SpendKey() { countOfKeys = 0; }
 }

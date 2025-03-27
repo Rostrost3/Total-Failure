@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MedusaMovement : MonoBehaviour, IDamageable
+public class MedusaMovement : EnemyClass, IDamageable
 {
     private float currentSpeed;
     public float chillSpeed;
@@ -27,10 +27,10 @@ public class MedusaMovement : MonoBehaviour, IDamageable
     public Transform groundCheckPos;
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
 
-    [Header("Player Animation Settings")]
-    public Animator animator;
+    //[Header("Player Animation Settings")]
+    //public Animator animator;
 
-    public WinMenu menu;
+    //public WinMenu menu;
 
     // Start is called before the first frame update
     void Start()
@@ -112,8 +112,8 @@ public class MedusaMovement : MonoBehaviour, IDamageable
     {
         if (IsShooting)
         {
-            if ((player.position.x < transform.position.x && transform.localScale.x < 0) ||
-                (player.position.x > transform.position.x && transform.localScale.x > 0))
+            if ((player.position.x < transform.position.x && transform.localScale.x > 0) ||
+                (player.position.x > transform.position.x && transform.localScale.x < 0))
             {
                 Vector3 scaler = transform.localScale;
                 scaler.x *= -1;
@@ -122,7 +122,7 @@ public class MedusaMovement : MonoBehaviour, IDamageable
         }
         else
         {
-            if ((movingRight && transform.localScale.x > 0) || (!movingRight && transform.localScale.x < 0))
+            if ((movingRight && transform.localScale.x < 0) || (!movingRight && transform.localScale.x > 0))
             {
                 Vector3 scaler = transform.localScale;
                 scaler.x *= -1;

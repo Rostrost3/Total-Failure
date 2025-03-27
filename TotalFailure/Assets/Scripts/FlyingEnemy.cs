@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyingEnemy : MonoBehaviour, IDamageable //� ����� PlayerAttackAndHealth
+public class FlyingEnemy : EnemyClass, IDamageable //� ����� PlayerAttackAndHealth
 {
     public float chillSpeed; // �������� ��������������
     public float angrySpeed; // �������� �������������

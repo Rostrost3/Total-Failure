@@ -3,7 +3,15 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class Patroler : MonoBehaviour, IDamageable //� ����� PlayerAttackAndHealth
+
+public class EnemyClass : MonoBehaviour
+{
+    public bool isDropKey = false;
+
+}
+
+
+public class Patroler : EnemyClass, IDamageable //� ����� PlayerAttackAndHealth
 {
     private float currentSpeed; // �������� ����� ������
     public float chillSpeed; // �������� ��� ��������������
@@ -44,7 +52,7 @@ public class Patroler : MonoBehaviour, IDamageable //� ����� PlayerA
     public WinMenu menu;
 
     public bool isDropHeart = false;
-    public bool isDropKey = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -95,6 +103,7 @@ public class Patroler : MonoBehaviour, IDamageable //� ����� PlayerA
         if (current_health <= 0)
         {
             Destroy(gameObject);
+            TrapChest.EnemyKilled();
         }
 
         Attack();
