@@ -48,7 +48,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
     public DeathMenu deathMenu;
     public double spikedDamage = 3;
 
-    private Vector2 playerPos; //Для запоминания позиции игрока
+    private Vector2 checkpointPos; //Для запоминания позиции игрока
 
     public int countOfKeys = 0;
 
@@ -59,7 +59,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
     // Start is called before the first frame update
     void Start()
     {
-        playerPos = transform.position;
+        checkpointPos = transform.position;
         fill = 1f;
     }
 
@@ -139,7 +139,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, spikesLayer))
         {
             TakeDamage(spikedDamage);
-            transform.position = playerPos;
+            transform.position = checkpointPos;
         }
     }
 
@@ -155,4 +155,9 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
 
     }
     public void SpendKey() { countOfKeys = 0; }
+
+    public void UpdateCheckpoint(Vector2 pos)
+    {
+        checkpointPos = pos;
+    }
 }
