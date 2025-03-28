@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public interface IHealth
 {
     void TakeHealth(double health);
 }
+
 public interface ITakeKeys
 {
     void TakeKey();
@@ -21,6 +23,8 @@ public interface ITakeKeys
 
 public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeKeys
 {
+    public static bool GodMode = false;
+
     private float timeBtwAttack = 0f;
     public float startTimeBtwAttack; //Сколько не может атаковать
 
@@ -42,6 +46,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
     public LayerMask spikesLayer; //Маска шипов
     public LayerMask groundLayer; //Маска земли
     public DeathMenu deathMenu;
+    public double spikedDamage = 3;
 
     private Vector2 playerPos; //Для запоминания позиции игрока
 
@@ -49,6 +54,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
 
     //Счётик выстрелов
     public float CountOfShots;
+    [SerializeField] private TextMeshProUGUI bulletsInfo;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +76,8 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
         }
 
         TouchSpikes();
+
+        bulletsInfo.text = CountOfShots.ToString();
     }
 
     private void Attack()
@@ -87,7 +95,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
                     {
                         damageable.TakeDamage(damage);
                         Debug.Log("Attack!");
-                        CountOfShots = 1; //После ближней атаки сбрасываем счётчик
+                        CountOfShots = 0; //После ближней атаки сбрасываем счётчик
                     }
                 }
                 timeBtwAttack = startTimeBtwAttack;
@@ -101,6 +109,11 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
 
     public void TakeDamage(double damage)
     {
+        if(GodMode)
+        {
+            return;
+        }
+
         current_health -= damage;
         fill = (float)(current_health / max_health);
         bar.fillAmount = fill;
@@ -125,7 +138,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
         //Если на шипах
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, spikesLayer))
         {
-            TakeDamage(3);
+            TakeDamage(spikedDamage);
             transform.position = playerPos;
         }
     }

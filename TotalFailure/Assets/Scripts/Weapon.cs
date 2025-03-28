@@ -30,7 +30,7 @@ public class Weapon : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1))
             {
-                if(player.CountOfShots <= 5)
+                if(player.CountOfShots <= 4)
                 {
                     Instantiate(projectile, shotPoint.position, transform.rotation);
                     timeBtwShots = startTimeBtwShots;

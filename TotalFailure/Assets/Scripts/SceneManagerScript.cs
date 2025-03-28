@@ -14,6 +14,8 @@ public class SceneManagerScript : MonoBehaviour
     [SerializeField] Slider volumeSlider = null;
     [SerializeField] TextMeshProUGUI volumeTextUI = null;
 
+    [SerializeField] private Toggle godModeToggle;
+
     public GameObject SettingsMenu;
 
     private void Start()
@@ -41,6 +43,8 @@ public class SceneManagerScript : MonoBehaviour
         {
             volumeTextUI.text = volume.ToString("0");
         });
+
+        godModeToggle.onValueChanged.AddListener(SetGodMode);
     }
 
     public void GameStart()
@@ -66,6 +70,13 @@ public class SceneManagerScript : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+    }
+
+    private void SetGodMode(bool isOn)
+    {
+        PlayerAttackAndHealth.GodMode = isOn;
+        PlayerPrefs.SetInt("GodMode", isOn ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     public void SetResolution(int resolutionIndex)
@@ -99,5 +110,9 @@ public class SceneManagerScript : MonoBehaviour
         {
             Screen.fullScreen = true;
         }
+
+        bool savedGodMode = PlayerPrefs.GetInt("GodMode", 0) == 1;
+        godModeToggle.isOn = savedGodMode; // Устанавливаем Toggle
+        PlayerAttackAndHealth.GodMode = savedGodMode;
     }
 }

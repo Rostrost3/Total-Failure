@@ -158,7 +158,6 @@ public class Patroler : EnemyClass, IDamageable //� ����� PlayerAtta
     {
         current_health -= damage;
         healthBar.SetHealthValue(current_health, max_health);
-
     }
 
     private void Attack()

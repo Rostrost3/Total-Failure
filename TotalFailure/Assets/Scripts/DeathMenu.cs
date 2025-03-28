@@ -17,6 +17,6 @@ public class DeathMenu : MonoBehaviour
     public void PlayAgain()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene("LVL1.2");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
