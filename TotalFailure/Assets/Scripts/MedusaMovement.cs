@@ -27,8 +27,8 @@ public class MedusaMovement : EnemyClass, IDamageable
     public Transform groundCheckPos;
     public Vector2 groundCheckSize = new Vector2(0.5f, 0.05f);
 
-    //[Header("Player Animation Settings")]
-    //public Animator animator;
+    [Header("Player Animation Settings")]
+    public Animator animator;
 
     //public WinMenu menu;
 
@@ -69,7 +69,7 @@ public class MedusaMovement : EnemyClass, IDamageable
 
         Flip();
 
-        //animator.SetFloat("Speed", currentSpeed);
+        animator.SetBool("isShooting", IsShooting);
 
         //animator.SetBool("Attack", isAttack);
     }
