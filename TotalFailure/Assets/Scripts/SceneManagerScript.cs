@@ -39,6 +39,8 @@ public class SceneManagerScript : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
         LoadSettings(currentResolutionsIndex);
 
+        volumeTextUI.text = volumeSlider.value.ToString();
+
         volumeSlider.onValueChanged.AddListener((volume) =>
         {
             volumeTextUI.text = volume.ToString("0");
