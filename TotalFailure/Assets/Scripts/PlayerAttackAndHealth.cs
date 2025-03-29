@@ -53,7 +53,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
     public int countOfKeys = 0;
 
     //Счётик выстрелов
-    public float CountOfShots;
+    public float CountOfShots = 5;
     [SerializeField] private TextMeshProUGUI bulletsInfo;
 
     // Start is called before the first frame update
@@ -61,6 +61,10 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
     {
         checkpointPos = transform.position;
         fill = 1f;
+        if (GodMode)
+        {
+            damage = 10;
+        }
     }
 
     // Update is called once per frame
@@ -95,7 +99,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
                     {
                         damageable.TakeDamage(damage);
                         Debug.Log("Attack!");
-                        CountOfShots = 0; //После ближней атаки сбрасываем счётчик
+                        CountOfShots = 5; //После ближней атаки сбрасываем счётчик
                     }
                 }
                 timeBtwAttack = startTimeBtwAttack;

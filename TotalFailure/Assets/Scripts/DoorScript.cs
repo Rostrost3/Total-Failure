@@ -10,6 +10,7 @@ public class DoorScript : MonoBehaviour
     public int requiredKeys = 3;
     private bool isPlayerNear = false;
     public TextMeshProUGUI messageText;
+    public GameObject onWinMenu; // Меню победы, так как пока нет последней сцены
 
 
     /*private void Start()
@@ -25,6 +26,7 @@ public class DoorScript : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             isPlayerNear = true;
+            UIMessageManager.Instance.ShowMessage("Press E to open the door");
         }
     }
 
@@ -63,6 +65,8 @@ public class DoorScript : MonoBehaviour
         }
         else
         {
+            Time.timeScale = 0;
+            onWinMenu.SetActive(true);
             Debug.Log("Это был последний уровень!");
         }
     }
