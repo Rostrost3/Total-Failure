@@ -51,6 +51,7 @@ public class SceneManagerScript : MonoBehaviour
 
     public void GameStart()
     {
+        PlayerPrefs.SetInt("ContinueGame", 0);
         SceneManager.LoadScene("LVL1.2");
     }
 
@@ -116,5 +117,12 @@ public class SceneManagerScript : MonoBehaviour
         bool savedGodMode = PlayerPrefs.GetInt("GodMode", 0) == 1;
         godModeToggle.isOn = savedGodMode; // Устанавливаем Toggle
         PlayerAttackAndHealth.GodMode = savedGodMode;
+    }
+
+    public void ContinueGame()
+    {
+        PlayerPrefs.SetInt("ContinueGame", 1);
+        string sceneToLoad = SaveSystem.LoadSceneName();
+        SceneManager.LoadScene(sceneToLoad);
     }
 }

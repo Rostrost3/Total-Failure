@@ -51,6 +51,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
     private Vector2 checkpointPos; //Для запоминания позиции игрока
 
     public int countOfKeys = 0;
+    [SerializeField] private TextMeshProUGUI keysInfo;
 
     //Счётик выстрелов
     public float CountOfShots = 5;
@@ -64,6 +65,14 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
         if (GodMode)
         {
             damage = 10;
+        }
+        int continueGame = PlayerPrefs.GetInt("ContinueGame", 0);
+        if(continueGame == 1)
+        {
+            List<float> info = SaveSystem.LoadInfo();
+            current_health = info[0];
+            countOfKeys = (int)info[1];
+            CountOfShots = info[2];
         }
     }
 
@@ -82,6 +91,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
         TouchSpikes();
 
         bulletsInfo.text = CountOfShots.ToString();
+        keysInfo.text = countOfKeys.ToString();
     }
 
     private void Attack()

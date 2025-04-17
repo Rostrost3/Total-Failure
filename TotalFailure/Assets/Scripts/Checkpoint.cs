@@ -16,6 +16,7 @@ public class Checkpoint : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerAttackAndHealth.UpdateCheckpoint(transform.position);
+            SaveSystem.SaveGame(playerAttackAndHealth);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -56,6 +57,13 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         trailRenderer = GetComponent<TrailRenderer>();
+
+        int continueGame = PlayerPrefs.GetInt("ContinueGame", 0);
+        if (continueGame == 1)
+        {
+            Vector2 position = SaveSystem.LoadPosition();
+            transform.position = position;
+        }
     }
 
     // Update is called once per frame

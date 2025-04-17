@@ -10,7 +10,6 @@ public class Key : MonoBehaviour
 
     private void Start()
     {
-
         playerTransform = GameObject.FindWithTag("Player").transform; // Получаем ссылку на игрока
     }
 
