@@ -7,7 +7,7 @@ using UnityEngine;
 public class EnemyClass : MonoBehaviour
 {
     public bool isDropKey = false;
-
+    public bool isDead = false;
 }
 
 
@@ -102,6 +102,7 @@ public class Patroler : EnemyClass, IDamageable //� ����� PlayerAtta
 
         if (current_health <= 0)
         {
+            isDead = true;
             Destroy(gameObject);
             TrapChest.EnemyKilled();
         }

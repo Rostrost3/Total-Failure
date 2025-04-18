@@ -64,6 +64,7 @@ public class MedusaMovement : EnemyClass, IDamageable
 
         if (current_health <= 0)
         {
+            isDead = true;
             Destroy(gameObject);
         }
 

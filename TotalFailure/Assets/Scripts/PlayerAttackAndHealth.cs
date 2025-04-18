@@ -54,7 +54,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
     [SerializeField] private TextMeshProUGUI keysInfo;
 
     //—чЄтик выстрелов
-    public float CountOfShots = 5;
+    public int CountOfShots = 5;
     [SerializeField] private TextMeshProUGUI bulletsInfo;
 
     // Start is called before the first frame update
@@ -69,10 +69,10 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
         int continueGame = PlayerPrefs.GetInt("ContinueGame", 0);
         if(continueGame == 1)
         {
-            List<float> info = SaveSystem.LoadInfo();
-            current_health = info[0];
-            countOfKeys = (int)info[1];
-            CountOfShots = info[2];
+            Tuple<float, int, int> info = SaveSystem.LoadInfo();
+            current_health = info.Item1;
+            countOfKeys = info.Item2;
+            CountOfShots = info.Item3;
         }
     }
 

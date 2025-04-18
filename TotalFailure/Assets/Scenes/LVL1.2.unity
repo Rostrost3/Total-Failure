@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDropKey: 0
+  isDead: 0
   chillSpeed: 1
   angrySpeed: 2.5
   positionOfPatrol: 1
@@ -1223,7 +1224,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 51fec983b7b699943a3ca0d0df7ab021, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2631,6 +2632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDropKey: 0
+  isDead: 0
   chillSpeed: 1
   angrySpeed: 2.5
   positionOfPatrol: 1
@@ -3908,6 +3910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDropKey: 0
+  isDead: 0
   chillSpeed: 1
   angrySpeed: 2
   stopDistance: 1
@@ -5578,7 +5581,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 51fec983b7b699943a3ca0d0df7ab021, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6060,6 +6063,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDropKey: 0
+  isDead: 0
   chillSpeed: 1
   angrySpeed: 2
   stopDistance: 1
@@ -6389,6 +6393,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18856c4d2364864ca3181925e84307d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 1281842285}
+  - {fileID: 1906176285}
+  - {fileID: 229207787}
+  - {fileID: 24723229}
+  - {fileID: 1328147212}
+  - {fileID: 338780052}
+  - {fileID: 504907811}
+  keys:
+  - {fileID: 2119106970}
 --- !u!61 &515497970
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7199,7 +7213,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 51fec983b7b699943a3ca0d0df7ab021, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -19905,7 +19919,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 51fec983b7b699943a3ca0d0df7ab021, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -20554,6 +20568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDropKey: 0
+  isDead: 0
   chillSpeed: 1
   angrySpeed: 2.5
   positionOfPatrol: 1
@@ -21407,6 +21422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDropKey: 0
+  isDead: 0
   chillSpeed: 1
   angrySpeed: 2.5
   positionOfPatrol: 1
@@ -25203,7 +25219,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 51fec983b7b699943a3ca0d0df7ab021, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -26146,7 +26162,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 51fec983b7b699943a3ca0d0df7ab021, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -27348,6 +27364,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18856c4d2364864ca3181925e84307d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 1281842285}
+  - {fileID: 1906176285}
+  - {fileID: 229207787}
+  - {fileID: 24723229}
+  - {fileID: 1328147212}
+  - {fileID: 338780052}
+  - {fileID: 504907811}
+  keys:
+  - {fileID: 2119106970}
 --- !u!61 &1824901466
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -28290,6 +28316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDropKey: 0
+  isDead: 0
   chillSpeed: 1
   angrySpeed: 2.5
   positionOfPatrol: 1

@@ -33,7 +33,6 @@ public class FlyingEnemy : EnemyClass, IDamageable //� ����� PlayerA
     [Header("Player Animation Settings")]
     public Animator animator;
 
-
     // Start ���������� ����� ������ ������
     void Start()
     {
@@ -77,6 +76,7 @@ public class FlyingEnemy : EnemyClass, IDamageable //� ����� PlayerA
 
         if (current_health <= 0)
         {
+            isDead = true;
             Destroy(gameObject);
         }
 
