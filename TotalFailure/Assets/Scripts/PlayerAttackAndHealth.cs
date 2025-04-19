@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public interface IDamageable
@@ -61,19 +62,16 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
     void Start()
     {
         checkpointPos = transform.position;
-        fill = 1f;
         if (GodMode)
         {
             damage = 10;
         }
-        int continueGame = PlayerPrefs.GetInt("ContinueGame", 0);
-        if(continueGame == 1)
-        {
-            Tuple<float, int, int> info = SaveSystem.LoadInfo();
-            current_health = info.Item1;
-            countOfKeys = info.Item2;
-            CountOfShots = info.Item3;
-        }
+        Tuple<float, int, int> info = SaveSystem.LoadInfo();
+        current_health = PlayerPrefs.HasKey("PlayerHealth") ? info.Item1 : max_health;
+        countOfKeys = PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "PlayerCountKeys") ? info.Item2 : 0;
+        CountOfShots = PlayerPrefs.HasKey("PlayerCountShots") ? info.Item3 : 5;
+        fill = (float)(current_health / max_health);
+        bar.fillAmount = fill;
     }
 
     // Update is called once per frame

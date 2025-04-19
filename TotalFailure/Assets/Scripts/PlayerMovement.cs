@@ -63,7 +63,10 @@ public class PlayerMovement : MonoBehaviour
         if (continueGame == 1)
         {
             Vector2 position = SaveSystem.LoadPosition();
-            transform.position = position;
+            if(PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "PlayerX") && PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "PlayerY"))
+            {
+                transform.position = position;
+            }
         }
     }
 

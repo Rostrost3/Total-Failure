@@ -4,10 +4,12 @@ using System.Text;
 using UnityEngine;
 
 
-public class EnemyClass : MonoBehaviour
+public abstract class EnemyClass : MonoBehaviour
 {
     public bool isDropKey = false;
     public bool isDead = false;
+
+    public abstract void Die(bool fromLoad = false);
 }
 
 
@@ -102,9 +104,7 @@ public class Patroler : EnemyClass, IDamageable //� ����� PlayerAtta
 
         if (current_health <= 0)
         {
-            isDead = true;
-            Destroy(gameObject);
-            TrapChest.EnemyKilled();
+            Die();
         }
 
         Attack();
@@ -118,6 +118,18 @@ public class Patroler : EnemyClass, IDamageable //� ����� PlayerAtta
         animator.SetBool("Attack", isAttack);
     }
 
+    public override void Die(bool fromLoad = false)
+    {
+        isDead = true;
+
+        if(fromLoad)
+        {
+            isDropHeart = false;
+        }
+
+        Destroy(gameObject);
+        TrapChest.EnemyKilled();
+    }
 
     // ��� ������ �� �������
     void Chill()

@@ -30,6 +30,8 @@ public class MedusaMovement : EnemyClass, IDamageable
     [Header("Player Animation Settings")]
     public Animator animator;
 
+    public MedusaHeartActivator heartActivator;
+
     //public WinMenu menu;
 
     // Start is called before the first frame update
@@ -64,8 +66,7 @@ public class MedusaMovement : EnemyClass, IDamageable
 
         if (current_health <= 0)
         {
-            isDead = true;
-            Destroy(gameObject);
+            Die();
         }
 
         Flip();
@@ -75,6 +76,17 @@ public class MedusaMovement : EnemyClass, IDamageable
         //animator.SetBool("Attack", isAttack);
     }
 
+    public override void Die(bool fromLoad = false)
+    {
+        isDead = true;
+
+        if(fromLoad)
+        {
+            heartActivator.isActive = false;
+        }
+
+        Destroy(gameObject);
+    }
 
     void Chill()
     {

@@ -23,19 +23,15 @@ public class Checkpoint : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        SaveSystem.SavePlayer(playerAttackAndHealth);
-        SaveSystem.SaveEnemies(enemies);
-        SaveSystem.SaveKeys(keys);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             playerAttackAndHealth.UpdateCheckpoint(transform.position);
             SaveSystem.SavePosition(playerAttackAndHealth);
+            SaveSystem.SavePlayer(playerAttackAndHealth);
+            SaveSystem.SaveEnemies(enemies);
+            SaveSystem.SaveKeys(keys);
         }
     }
 }

@@ -5151,6 +5151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heart: {fileID: 871073263}
   miniBoss: {fileID: 1993202419}
+  isActive: 0
 --- !u!114 &472940112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49499,6 +49500,7 @@ MonoBehaviour:
   groundCheckPos: {fileID: 543681360}
   groundCheckSize: {x: 0.6, y: 0.05}
   animator: {fileID: 1993202428}
+  heartActivator: {fileID: 472940111}
 --- !u!212 &1993202427
 SpriteRenderer:
   m_ObjectHideFlags: 0

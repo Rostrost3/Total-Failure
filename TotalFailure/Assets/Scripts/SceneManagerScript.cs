@@ -51,6 +51,7 @@ public class SceneManagerScript : MonoBehaviour
 
     public void GameStart()
     {
+        PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("ContinueGame", 0);
         SceneManager.LoadScene("LVL1.2");
     }

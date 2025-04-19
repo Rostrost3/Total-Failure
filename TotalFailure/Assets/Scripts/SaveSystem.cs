@@ -8,9 +8,9 @@ public class SaveSystem : MonoBehaviour
 {
     public static void SavePlayer(PlayerAttackAndHealth player)
     {
-        PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "PlayerHealth", (float)player.current_health);
+        PlayerPrefs.SetFloat("PlayerHealth", (float)player.current_health);
         PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "PlayerCountKeys", player.countOfKeys);
-        PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "PlayerCountShots", player.CountOfShots);
+        PlayerPrefs.SetInt("PlayerCountShots", player.CountOfShots);
         PlayerPrefs.SetString("SceneName", SceneManager.GetActiveScene().name);
 
         PlayerPrefs.Save();
@@ -78,7 +78,7 @@ public class SaveSystem : MonoBehaviour
                 enemies[i].isDropKey = isDropKey;
                 if (isDead)
                 {
-                    Destroy(enemies[i].gameObject);  // Деактивируем врага, если он мертв
+                    enemies[i].Die(true); // Деактивируем врага, если он мертв
                 }
             }
         }
@@ -91,6 +91,6 @@ public class SaveSystem : MonoBehaviour
 
     public static Tuple<float, int, int> LoadInfo()
     {
-        return Tuple.Create(PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + "PlayerHealth", 0f), PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "PlayerCountKeys", 0), PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "PlayerCountShots", 0));
+        return Tuple.Create(PlayerPrefs.GetFloat("PlayerHealth", 0), PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "PlayerCountKeys", 0), PlayerPrefs.GetInt("PlayerCountShots", 0));
     }
 }

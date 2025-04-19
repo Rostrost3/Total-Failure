@@ -76,8 +76,7 @@ public class FlyingEnemy : EnemyClass, IDamageable //� ����� PlayerA
 
         if (current_health <= 0)
         {
-            isDead = true;
-            Destroy(gameObject);
+            Die();
         }
 
         IsMovingRight();
@@ -87,6 +86,12 @@ public class FlyingEnemy : EnemyClass, IDamageable //� ����� PlayerA
         Attack();
 
         animator.SetFloat("Speed", currentSpeed);
+    }
+
+    public override void Die(bool fromLoad = false)
+    {
+        isDead = true;
+        Destroy(gameObject);
     }
 
     private void IsMovingRight()

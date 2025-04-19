@@ -7,7 +7,7 @@ public class MedusaHeartActivator : MonoBehaviour
     public GameObject heart;
     public GameObject miniBoss;
     private Vector2 positionMiniBoss;
-    private bool isActive;
+    public bool isActive;
 
     // Start is called before the first frame update
     void Start()

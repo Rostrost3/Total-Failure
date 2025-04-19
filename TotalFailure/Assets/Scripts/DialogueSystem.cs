@@ -10,55 +10,60 @@ public class DialogueSystem : MonoBehaviour
     public float textSpeed;
     PlayerMovement pM;
 
+    private bool isDialogueActive = false;
+
     private int index;
 
     void Start()
     {
+        string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        string dialogueShownKey = currentScene + "_DialogueShown";
+
         pM = FindAnyObjectByType<PlayerMovement>();
 
-        if (PlayerPrefs.GetInt("ContinueGame", 0) == 0)
+        if (PlayerPrefs.GetInt(dialogueShownKey, 0) == 0)
         {
-            // Новая игра — запускаем диалог
+            // Диалог ещё не был показан на этой сцене
             textComponent.text = string.Empty;
             StartDialogue();
+            PlayerPrefs.SetInt(dialogueShownKey, 1);
+            PlayerPrefs.Save();
         }
         else
         {
-            // Продолжение игры — полностью отключаем диалоговую систему
+            // Диалог уже был показан на этой сцене
             gameObject.SetActive(false);
         }
     }
 
     void Update()
     {
-        // Если игра не продолжена (значит, мы в диалоге)
-        if (PlayerPrefs.GetInt("ContinueGame", 0) == 0)
+        if (!isDialogueActive) return;
+
+        if (Input.GetKeyUp(KeyCode.KeypadEnter) || Input.GetMouseButtonDown(0))
         {
-            // Если нажата кнопка Enter или левая кнопка мыши
-            if (Input.GetKeyUp(KeyCode.KeypadEnter) || Input.GetMouseButtonDown(0))
+            if (textComponent.text == lines[index])
             {
-                if (textComponent.text == lines[index]) { NextLine(); }
-                else
-                {
-                    // Останавливаем все корутины и сразу показываем текущую строку
-                    StopAllCoroutines();
-                    textComponent.text = lines[index];
-                }
+                NextLine();
+            }
+            else
+            {
+                StopAllCoroutines();
+                textComponent.text = lines[index];
             }
         }
     }
 
+
     void StartDialogue()
     {
-        // Отключаем возможность двигаться во время диалога
+        isDialogueActive = true;
         pM.isDialogueActive = true;
 
-        // Начинаем диалог с первой строки
         index = 0;
-
-        // Начинаем корутину для печати текста
         StartCoroutine(TypeLine());
     }
+
 
     // Печатает текст по буквам
     IEnumerator TypeLine()
@@ -73,18 +78,18 @@ public class DialogueSystem : MonoBehaviour
 
     void NextLine()
     {
-        // Если есть еще строки
         if (index < lines.Length - 1)
         {
             index++;
-            textComponent.text = string.Empty; // Очищаем текст
-            StartCoroutine(TypeLine()); // Печатаем следующую строку
+            textComponent.text = string.Empty;
+            StartCoroutine(TypeLine());
         }
         else
         {
-            // Закрываем диалоговое окно, когда все строки пройдены
             gameObject.SetActive(false);
-            pM.isDialogueActive = false; // Разрешаем двигаться
+            pM.isDialogueActive = false;
+            isDialogueActive = false;
         }
     }
+
 }
