@@ -7961,8 +7961,8 @@ MonoBehaviour:
   chill: 1
   angry: 0
   goBack: 0
-  max_health: 2
-  current_health: 2
+  max_health: 7
+  current_health: 7
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 2104037708}
@@ -15088,8 +15088,8 @@ MonoBehaviour:
   chill: 1
   angry: 0
   goBack: 0
-  max_health: 2
-  current_health: 2
+  max_health: 7
+  current_health: 7
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 998776437}
@@ -48393,8 +48393,8 @@ MonoBehaviour:
   chill: 1
   angry: 0
   goBack: 0
-  max_health: 2
-  current_health: 2
+  max_health: 7
+  current_health: 7
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 730264411}
