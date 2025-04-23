@@ -14557,6 +14557,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &652901298
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652901299}
+  m_Layer: 8
+  m_Name: WaveSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &652901299
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652901298}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.04, y: -4.76, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1889586289}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &666038313
 GameObject:
   m_ObjectHideFlags: 0
@@ -20518,6 +20549,7 @@ GameObject:
   - component: {fileID: 1889586293}
   - component: {fileID: 1889586294}
   - component: {fileID: 1889586295}
+  - component: {fileID: 1889586296}
   - component: {fileID: 1889586291}
   - component: {fileID: 1889586290}
   - component: {fileID: 1889586288}
@@ -20565,6 +20597,7 @@ Transform:
   - {fileID: 1285708246}
   - {fileID: 2063940494}
   - {fileID: 1211979601}
+  - {fileID: 652901299}
   m_Father: {fileID: 1668121669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1889586290
@@ -20733,6 +20766,21 @@ MonoBehaviour:
   damage: 8
   player: {fileID: 1980611742}
   attackPos: {fileID: 1285708246}
+--- !u!114 &1889586296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889586286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dcf248ccbb94d04baf7a198d9cb3d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDelay: 10
+  fireWave: {fileID: 8680988292645440105, guid: e5075f1be3427d84bb20d0a09e856e2e, type: 3}
+  spawnPoint: {fileID: 652901299}
 --- !u!1 &1907281637
 GameObject:
   m_ObjectHideFlags: 0
