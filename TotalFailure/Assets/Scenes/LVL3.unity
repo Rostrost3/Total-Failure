@@ -17378,37 +17378,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176466118}
   m_CullTransparentMesh: 1
---- !u!1 &1183887239
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1183887240}
-  m_Layer: 0
-  m_Name: ArrowPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1183887240
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1183887239}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.25, y: -0.68, z: -0.08485106}
-  m_LocalScale: {x: 2.3455498, y: 2.3455498, z: 0.6298}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1889586289}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1205643689
 GameObject:
   m_ObjectHideFlags: 0
@@ -18585,6 +18554,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1980611750}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1285708245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285708246}
+  m_Layer: 8
+  m_Name: AttackPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1285708246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285708245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1889586289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1360304158
 GameObject:
@@ -20072,7 +20072,7 @@ GameObject:
   - component: {fileID: 1668121668}
   - component: {fileID: 1668121667}
   m_Layer: 0
-  m_Name: Medusa
+  m_Name: Charon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20091,7 +20091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemiesList:
-  - {fileID: 1889586287}
+  - {fileID: 1889586294}
   keyObject: {fileID: 2136690264}
 --- !u!114 &1668121668
 MonoBehaviour:
@@ -20516,44 +20516,18 @@ GameObject:
   m_Component:
   - component: {fileID: 1889586289}
   - component: {fileID: 1889586293}
-  - component: {fileID: 1889586287}
-  - component: {fileID: 1889586292}
+  - component: {fileID: 1889586294}
+  - component: {fileID: 1889586295}
   - component: {fileID: 1889586291}
   - component: {fileID: 1889586290}
   - component: {fileID: 1889586288}
   m_Layer: 8
-  m_Name: MedusaEnemy
+  m_Name: CharonEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1889586287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889586286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 295e6780e45f3b74b9feb1d37433cd76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isDropKey: 0
-  isDead: 0
-  chillSpeed: 1
-  positionOfPatrol: 5
-  point: {fileID: 1926174454}
-  stoppingDistance: 6
-  IsShooting: 0
-  max_health: 30
-  current_health: 30
-  healthBar: {fileID: 2063940498}
-  groundCheckPos: {fileID: 1211979601}
-  groundCheckSize: {x: 0.6, y: 0.05}
-  animator: {fileID: 1889586288}
-  heartActivator: {fileID: 1668121668}
 --- !u!95 &1889586288
 Animator:
   serializedVersion: 5
@@ -20588,9 +20562,9 @@ Transform:
   m_LocalScale: {x: 0.5560811, y: 0.5560811, z: 2.071}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1285708246}
   - {fileID: 2063940494}
   - {fileID: 1211979601}
-  - {fileID: 1183887240}
   m_Father: {fileID: 1668121669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1889586290
@@ -20665,22 +20639,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.3308563, y: 10.110423}
   m_EdgeRadius: 0
---- !u!114 &1889586292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889586286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3d62c52c6dc3af40ac2987593a2184f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrow: {fileID: 8431846748826572271, guid: 409f63346d111854b97095c93809e683, type: 3}
-  arrowPos: {fileID: 1183887240}
-  startTimer: 3
-  medusa: {fileID: 1889586287}
 --- !u!212 &1889586293
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20733,6 +20691,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1889586294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889586286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0baa5f63a833b014a802b98b571a5695, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDropKey: 0
+  isDead: 0
+  chillSpeed: 1
+  positionOfPatrol: 5
+  point: {fileID: 1926174454}
+  stoppingDistance: 6
+  IsShooting: 0
+  max_health: 30
+  current_health: 30
+  healthBar: {fileID: 2063940498}
+  groundCheckPos: {fileID: 1211979601}
+  groundCheckSize: {x: 0.5, y: 0.05}
+  animator: {fileID: 0}
+--- !u!114 &1889586295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889586286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30074caf50af3db46a91d0da6afa3c58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 2.5
+  attackDelay: 2
+  damage: 8
+  player: {fileID: 1980611742}
+  attackPos: {fileID: 1285708246}
 --- !u!1 &1907281637
 GameObject:
   m_ObjectHideFlags: 0
@@ -21021,7 +21021,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1926174454}
   m_Layer: 0
-  m_Name: MedusaPoint
+  m_Name: CharonPoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

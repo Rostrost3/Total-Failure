@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MedusaMovement : EnemyClass, IDamageable
+public class CharonMovement : EnemyClass, IDamageable
 {
     private float currentSpeed;
     public float chillSpeed;
@@ -29,8 +29,6 @@ public class MedusaMovement : EnemyClass, IDamageable
 
     [Header("Player Animation Settings")]
     public Animator animator;
-
-    public MedusaHeartActivator heartActivator;
 
     //public WinMenu menu;
 
@@ -79,11 +77,6 @@ public class MedusaMovement : EnemyClass, IDamageable
     public override void Die(bool fromLoad = false)
     {
         isDead = true;
-
-        if(fromLoad)
-        {
-            heartActivator.isActive = false;
-        }
 
         Destroy(gameObject);
     }
