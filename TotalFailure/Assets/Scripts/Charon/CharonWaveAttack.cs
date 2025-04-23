@@ -9,9 +9,13 @@ public class CharonWaveAttack : MonoBehaviour
     public Transform spawnPoint;
     private bool isAttacking;
 
+    public CharonMovement charon;
+
     // Update is called once per frame
     void Update()
     {
+        if (charon.IsFrozen) return;
+
         if (!isAttacking)
         {
             isAttacking = true;

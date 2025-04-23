@@ -17,10 +17,10 @@ public class CharonMovement : EnemyClass, IDamageable
     bool chill = true;
     bool goBack = false;
 
-    public bool IsShooting = false;
+    public bool IsFrozen = false;
 
-    public double max_health = 10;
-    public double current_health = 10;
+    public double max_health;
+    public double current_health;
 
     [SerializeField] private EnemyHealthBar healthBar;
 
@@ -42,6 +42,8 @@ public class CharonMovement : EnemyClass, IDamageable
     // Update is called once per frame
     void Update()
     {
+        if (IsFrozen) return;
+
         if (Vector2.Distance(transform.position, player.position) > stoppingDistance)
         {
             goBack = true;
@@ -109,6 +111,8 @@ public class CharonMovement : EnemyClass, IDamageable
 
     public void TakeDamage(double damage)
     {
+        if (IsFrozen) return;
+
         current_health -= damage;
         healthBar.SetHealthValue(current_health, max_health);
 
@@ -116,24 +120,11 @@ public class CharonMovement : EnemyClass, IDamageable
 
     private void Flip()
     {
-        if (IsShooting)
+        if ((movingRight && transform.localScale.x < 0) || (!movingRight && transform.localScale.x > 0))
         {
-            if ((player.position.x < transform.position.x && transform.localScale.x > 0) ||
-                (player.position.x > transform.position.x && transform.localScale.x < 0))
-            {
-                Vector3 scaler = transform.localScale;
-                scaler.x *= -1;
-                transform.localScale = scaler;
-            }
-        }
-        else
-        {
-            if ((movingRight && transform.localScale.x < 0) || (!movingRight && transform.localScale.x > 0))
-            {
-                Vector3 scaler = transform.localScale;
-                scaler.x *= -1;
-                transform.localScale = scaler;
-            }
+            Vector3 scaler = transform.localScale;
+            scaler.x *= -1;
+            transform.localScale = scaler;
         }
     }
 
