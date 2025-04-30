@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,6 +37,10 @@ public class CharonMovement : EnemyClass, IDamageable
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        Tuple<bool, bool, float> info = SaveSystem.LoadCharon();
+        isDead = PlayerPrefs.HasKey("Charon") ? info.Item1 : false;
+        isDropKey = PlayerPrefs.HasKey("CharonKey") ? info.Item2 : false;
+        current_health = PlayerPrefs.HasKey("CharonHealth") ? info.Item3 : max_health;
         healthBar.SetHealthValue(current_health, max_health);
     }
 

@@ -30,7 +30,14 @@ public class Checkpoint : MonoBehaviour
             playerAttackAndHealth.UpdateCheckpoint(transform.position);
             SaveSystem.SavePosition(playerAttackAndHealth);
             SaveSystem.SavePlayer(playerAttackAndHealth);
-            SaveSystem.SaveEnemies(enemies);
+            if (enemies[0].CompareTag("Charon"))
+            {
+                SaveSystem.SaveCharon(enemies[0].GetComponent<CharonMovement>());
+            }
+            else
+            {
+                SaveSystem.SaveEnemies(enemies);
+            }
             SaveSystem.SaveKeys(keys);
         }
     }

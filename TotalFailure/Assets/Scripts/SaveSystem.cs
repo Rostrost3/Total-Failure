@@ -35,6 +35,13 @@ public class SaveSystem : MonoBehaviour
         PlayerPrefs.Save();
     }
 
+    public static void SaveCharon(CharonMovement charon)
+    {
+        PlayerPrefs.SetInt("Charon", charon.isDead ? 1 : 0);
+        PlayerPrefs.SetInt("CharonKey", charon.isDropKey ? 1 : 0);
+        PlayerPrefs.SetFloat("CharonHealth", (float)charon.current_health);
+    }
+
     public static void SaveEnemies(List<EnemyClass> enemies)
     {
         for (int i = 0; i < enemies.Count; i++)
@@ -64,6 +71,11 @@ public class SaveSystem : MonoBehaviour
                 }
             }
         }
+    }
+
+    public static Tuple<bool, bool, float> LoadCharon()
+    {
+        return Tuple.Create(PlayerPrefs.GetInt("Charon") == 1, PlayerPrefs.GetInt("CharonKey") == 1, PlayerPrefs.GetFloat("CharonHealth", 0));
     }
 
     public static void LoadEnemies(List<EnemyClass> enemies)

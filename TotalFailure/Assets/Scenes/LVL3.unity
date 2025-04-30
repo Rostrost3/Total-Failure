@@ -20205,7 +20205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4976123ee577c0499abdb0d6a75f57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolers: []
   heartObject: {fileID: 1967148088}
 --- !u!1 &1675701663
 GameObject:
@@ -21019,8 +21018,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18856c4d2364864ca3181925e84307d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies: []
-  keys: []
+  enemies:
+  - {fileID: 1889586294}
+  keys:
+  - {fileID: 2136690266}
 --- !u!61 &1921892498
 BoxCollider2D:
   m_ObjectHideFlags: 0
