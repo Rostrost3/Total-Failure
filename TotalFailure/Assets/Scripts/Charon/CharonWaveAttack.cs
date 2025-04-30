@@ -14,8 +14,6 @@ public class CharonWaveAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (charon.IsFrozen) return;
-
         if (!isAttacking)
         {
             isAttacking = true;

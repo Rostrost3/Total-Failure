@@ -14219,7 +14219,7 @@ Transform:
   m_GameObject: {fileID: 492392450}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.58, y: 1, z: 0}
+  m_LocalPosition: {x: 24.8, y: -4.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14613,7 +14613,7 @@ Transform:
   m_GameObject: {fileID: 652901298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -4.76, z: 0}
+  m_LocalPosition: {x: 7.21, y: -1.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15002,7 +15002,7 @@ GameObject:
   - component: {fileID: 731750661}
   - component: {fileID: 731750663}
   - component: {fileID: 731750662}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20592,7 +20592,7 @@ GameObject:
   - component: {fileID: 1889586288}
   m_Layer: 8
   m_Name: CharonEnemy
-  m_TagString: Enemy
+  m_TagString: Charon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20804,6 +20804,7 @@ MonoBehaviour:
   damage: 8
   player: {fileID: 1980611742}
   attackPos: {fileID: 1285708246}
+  charon: {fileID: 1889586294}
 --- !u!114 &1889586296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20816,7 +20817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dcf248ccbb94d04baf7a198d9cb3d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDelay: 10
+  attackDelay: 7
   fireWave: {fileID: 8680988292645440105, guid: e5075f1be3427d84bb20d0a09e856e2e, type: 3}
   spawnPoint: {fileID: 652901299}
   charon: {fileID: 1889586294}
@@ -21954,6 +21955,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 615028550071031533, guid: 749a314fd1410e6418209848e9c860af, type: 3}
+      propertyPath: isDead
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 615028550071031533, guid: 749a314fd1410e6418209848e9c860af, type: 3}
+      propertyPath: angrySpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 615028550071031533, guid: 749a314fd1410e6418209848e9c860af, type: 3}
+      propertyPath: chillSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 615028550071031533, guid: 749a314fd1410e6418209848e9c860af, type: 3}
+      propertyPath: current_health
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2417323860761628818, guid: 749a314fd1410e6418209848e9c860af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.699999

@@ -49,23 +49,26 @@ public class CharonCreateEnemies : MonoBehaviour
         {
             for (int i = 0; i < spawnEnemies.Count; ++i)
             {
-                GameObject newPoint = new GameObject("PatrolerPoint1");
-                newPoint.transform.position = new Vector2(spawnPoint.transform.position.x + j, spawnPoint.transform.position.y);
+                float randomOffsetX = Random.Range(-10f, 10f);
+                float randomOffsetY = Random.Range(2f, 5f);
 
-                GameObject minion = Instantiate(spawnEnemies[i], newPoint.transform.position, Quaternion.identity);
+                GameObject minion = Instantiate(spawnEnemies[i], spawnPoint.transform.position, Quaternion.identity);
                 if(minion.GetComponentInChildren<Patroler>() != null)
                 {
                     Patroler patroler = minion.GetComponentInChildren<Patroler>();
                     aliveEnemies.Add(patroler);
-                    patroler.point = newPoint.transform;
-                    patroler.transform.position = newPoint.transform.position;
+                    patroler.point = spawnPoint.transform;
+                    patroler.transform.position = spawnPoint.transform.position;
                 }
                 else
                 {
                     FlyingEnemy flyingEnemy = minion.GetComponentInChildren<FlyingEnemy>();
+                    ChaseControl chaseControl = minion.GetComponentInChildren<ChaseControl>();
                     aliveEnemies.Add(flyingEnemy);
-                    flyingEnemy.startingPoint = newPoint.transform;
-                    flyingEnemy.transform.position = newPoint.transform.position;
+                    Vector2 newPosition = new Vector2(spawnPoint.transform.position.x + randomOffsetX, spawnPoint.transform.position.y + randomOffsetY);
+                    flyingEnemy.startingPoint.position = newPosition;
+                    flyingEnemy.transform.position = newPosition;
+                    chaseControl.transform.position = newPosition;
                 }
 
                 yield return new WaitForSeconds(delaySpawn);

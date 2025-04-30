@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,10 +12,14 @@ public class CharonMeeleAttack : MonoBehaviour
     public Transform attackPos;
     //public Animator animator;
 
+    public CharonMovement charon;
+
     private bool isAttacking = false;
 
     void Update()
     {
+        if (charon.IsFrozen) return;
+
         if (!isAttacking && Vector2.Distance(attackPos.position, player.transform.position) < attackRange)
         {
             isAttacking = true;

@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
         RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, transform.right, distance, whatIsSolid); //Невидимая линия, начальная точка, в какую сторону, длина и с какой маской должна столкнуться
         if(hitInfo.collider != null)
         {
-            if(hitInfo.collider.CompareTag("Enemy"))
+            if(hitInfo.collider.CompareTag("Enemy") || hitInfo.collider.CompareTag("Charon"))
             {
                 IDamageable enemy = hitInfo.collider.GetComponent<IDamageable>();
                 if(enemy != null)
