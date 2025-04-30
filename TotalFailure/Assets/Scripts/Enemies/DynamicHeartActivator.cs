@@ -3,62 +3,67 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+[System.Serializable]
+public class PatrolerData
+{
+    public Patroler patroler;
+    public bool isDropHeart;
+    public Vector2 lastPosition;
+
+    public PatrolerData(Patroler p, bool drop)
+    {
+        patroler = p;
+        patroler.isDropHeart = drop;
+        isDropHeart = drop;
+        lastPosition = p.transform.position;
+    }
+}
+
 public class DynamicHeartActivator : MonoBehaviour
 {
-    public List<Patroler> patrolers; // Список врагов
-    private List<Vector2> positionPatrolers = new List<Vector2>();
-    public GameObject heartObject; // Объект щита (к которому прикреплён скрипт PatrolerShield)
+    public GameObject heartObject;
+    private List<PatrolerData> patrolerDataList = new List<PatrolerData>();
     private float chance;
 
     void Start()
     {
-        var allPatrolers = FindObjectsOfType<Patroler>();
-
-        foreach (var patroler in allPatrolers)
-        {
-            patrolers.Add(patroler);
-        }
-
-        heartObject.SetActive(false); // Начально скрываем щит
         chance = Random.Range(0f, 0.5f);
 
-        foreach (var p in patrolers)
+        var allPatrolers = FindObjectsOfType<Patroler>();
+        foreach (var p in allPatrolers)
         {
-            if (Random.value < chance)
-            {
-                p.isDropHeart = true;
-            }
-            positionPatrolers.Add(p.transform.position);
+            bool drop = Random.value < chance;
+            patrolerDataList.Add(new PatrolerData(p, drop));
         }
+
+        heartObject.SetActive(false);
     }
 
     void Update()
     {
-        var allPatrolers = FindObjectsOfType<Patroler>();
-        foreach (var patroler in allPatrolers)
+        // Добавление новых патрулёров
+        var currentPatrolers = FindObjectsOfType<Patroler>();
+        foreach (var p in currentPatrolers)
         {
-            if (!patrolers.Contains(patroler))
+            if (!patrolerDataList.Any(d => d.patroler == p))
             {
-                patrolers.Add(patroler);
-                if (Random.value < chance)
-                {
-                    patroler.isDropHeart = true;
-                }
-                positionPatrolers.Add(patroler.transform.position);
+                bool drop = Random.value < chance;
+                patrolerDataList.Add(new PatrolerData(p, drop));
             }
         }
 
-        for (int i = 0; i < patrolers.Count(); i++)
+        // Проверка на смерть
+        foreach (var data in patrolerDataList)
         {
-            if (patrolers[i] == null && patrolers[i].isDropHeart)
+            if (data.patroler == null && data.isDropHeart)
             {
-                patrolers[i].isDropHeart = false;
+                data.isDropHeart = false;
                 heartObject.SetActive(true);
-                heartObject.transform.position = positionPatrolers[i];
+                heartObject.transform.position = data.lastPosition;
             }
-            else if (patrolers[i] != null)
+            else if (data.patroler != null)
             {
-                positionPatrolers[i] = patrolers[i].transform.position;
+                data.lastPosition = data.patroler.transform.position;
             }
         }
     }
