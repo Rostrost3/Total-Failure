@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
 
     [Header("Movement")]
-    float moveSpeed = 7f;
+    public float moveSpeed = 7f;
     float horizontalInput;
     
 
@@ -161,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private bool isGrounded()
+    public bool isGrounded()
     {
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer))
         {

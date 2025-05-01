@@ -1,87 +1,81 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingPlatformVertical : MonoBehaviour
 {
     public enum MovementType { Vertical, Horizontal }
-    public MovementType movementType = MovementType.Vertical; // Тип движения
-
-    public float moveDistance = 7f; // Дистанция движения
-    public float speed = 3f; // Скорость движения
+    public MovementType movementType = MovementType.Vertical;
+    public float moveDistance = 7f;
+    public float speed = 3f;
 
     private Vector2 startPos;
     private bool movingForward = true;
     private Rigidbody2D rb;
-    private Transform player = null;
-    private Vector3 playerOffset = Vector3.zero;
+    private Vector2 lastPosition;
+    private GameObject playerOnPlatform; // Игрок на платформе
 
     void Start()
     {
         startPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
-
-        if (rb == null)
-        {
-            rb = gameObject.AddComponent<Rigidbody2D>(); // Добавляем Rigidbody2D, если его нет
-        }
-
-        rb.bodyType = RigidbodyType2D.Kinematic; // Делаем платформу кинематической
-        rb.gravityScale = 0; // Отключаем гравитацию
-        rb.interpolation = RigidbodyInterpolation2D.Interpolate; // Улучшает плавность движения
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+        lastPosition = rb.position;
     }
 
     void FixedUpdate()
     {
+        // Движение платформы
         float distanceMoved = Vector2.Distance(startPos, rb.position);
-
         if (distanceMoved >= moveDistance)
-        {
             movingForward = !movingForward;
-        }
 
-        Vector2 direction = movementType == MovementType.Vertical ? Vector2.up : Vector2.right;
-        Vector2 targetVelocity = (movingForward ? direction : -direction) * speed;
+        Vector2 direction = (movementType == MovementType.Vertical) ? Vector2.up : Vector2.right;
+        rb.velocity = (movingForward ? direction : -direction) * speed;
 
-        rb.velocity = targetVelocity; // Двигаем платформу через velocity
-
-        // Если персонаж на платформе, двигаем его вместе с платформой
-        if (player != null)
+        // Перемещение игрока, если он на платформе
+        if (playerOnPlatform != null)
         {
-            // Обновляем физику персонажа для его движения вдоль платформы
-            Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
-            Vector2 platformVelocity = rb.velocity;
+            Rigidbody2D playerRb = playerOnPlatform.GetComponent<Rigidbody2D>();
+            Vector2 deltaMovement = rb.position - lastPosition;
 
-            // Даем персонажу двигаться относительно платформы
+            // Сохраняем горизонтальную скорость игрока (если он бежит)
+            float playerInput = Input.GetAxis("Horizontal");
+            float playerSpeed = playerOnPlatform.GetComponent<PlayerMovement>().moveSpeed;
+
             if (movementType == MovementType.Horizontal)
             {
-                float horizontalInput = Input.GetAxis("Horizontal");
-                playerRb.velocity = new Vector2(horizontalInput * speed + platformVelocity.x, playerRb.velocity.y);
+                // Игрок может бежать в любом направлении независимо от платформы
+                playerRb.velocity = new Vector2(
+                    playerInput * playerSpeed + rb.velocity.x,
+                    playerRb.velocity.y
+                );
             }
             else
             {
-                // Если вертикальное движение платформы
-                playerRb.velocity = new Vector2(playerRb.velocity.x, platformVelocity.y);
+                float currentXVelocity = playerInput * playerSpeed;
+                float currentYVelocity = (playerRb.velocity.y > 0) ? playerRb.velocity.y : rb.velocity.y;
+
+                // Для вертикальной платформы игрок сохраняет горизонтальную скорость
+                playerRb.velocity = new Vector2(currentXVelocity, currentYVelocity);
             }
         }
+
+        lastPosition = rb.position;
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.GetComponent<PlayerMovement>().isGrounded())
         {
-            player = other.transform; // Запоминаем персонажа
-            playerOffset = player.position - transform.position; // Сохраняем смещение относительно платформы
-            player.SetParent(transform); // Прикрепляем персонажа к платформе
+            playerOnPlatform = collision.gameObject;
         }
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    void OnCollisionExit2D(Collision2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-            player.SetParent(null); // Открепляем персонажа
-            player = null;
+            playerOnPlatform = null;
         }
     }
 }
