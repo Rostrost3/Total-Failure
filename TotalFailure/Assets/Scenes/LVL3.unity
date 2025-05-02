@@ -21054,6 +21054,7 @@ MonoBehaviour:
   groundCheckPos: {fileID: 1211979601}
   groundCheckSize: {x: 0.5, y: 0.05}
   animator: {fileID: 0}
+  menu: {fileID: 1791124858}
 --- !u!114 &1889586295
 MonoBehaviour:
   m_ObjectHideFlags: 0

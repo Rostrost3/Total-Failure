@@ -31,7 +31,7 @@ public class CharonMovement : EnemyClass, IDamageable
     [Header("Player Animation Settings")]
     public Animator animator;
 
-    //public WinMenu menu;
+    public GameObject menu;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +86,8 @@ public class CharonMovement : EnemyClass, IDamageable
         isDead = true;
 
         Destroy(gameObject);
+
+        menu.SetActive(true);
     }
 
     void Chill()
