@@ -7677,6 +7677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDropKey: 0
   isDead: 0
+  current_health: 7
   chillSpeed: 1
   angrySpeed: 2
   stopDistance: 1
@@ -7686,7 +7687,6 @@ MonoBehaviour:
   angry: 0
   goBack: 0
   max_health: 7
-  current_health: 7
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 2104037708}
@@ -8782,13 +8782,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDropKey: 0
   isDead: 0
+  current_health: 5
   chillSpeed: 1
   angrySpeed: 2.5
   positionOfPatrol: 3
   point: {fileID: 755916969}
   stoppingDistance: 5
   max_health: 5
-  current_health: 5
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 384015}
@@ -14620,6 +14620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDropKey: 0
   isDead: 0
+  current_health: 7
   chillSpeed: 1
   angrySpeed: 2
   stopDistance: 1
@@ -14629,7 +14630,6 @@ MonoBehaviour:
   angry: 0
   goBack: 0
   max_health: 7
-  current_health: 7
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 998776437}
@@ -15930,13 +15930,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDropKey: 0
   isDead: 0
+  current_health: 5
   chillSpeed: 1
   angrySpeed: 2.5
   positionOfPatrol: 2
   point: {fileID: 4151132}
   stoppingDistance: 5
   max_health: 5
-  current_health: 5
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 416982798}
@@ -47925,6 +47925,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDropKey: 0
   isDead: 0
+  current_health: 7
   chillSpeed: 1
   angrySpeed: 2
   stopDistance: 1
@@ -47934,7 +47935,6 @@ MonoBehaviour:
   angry: 0
   goBack: 0
   max_health: 7
-  current_health: 7
   damage: 1
   startTimeBtwAttack: 1.5
   attackPos: {fileID: 730264411}
@@ -48904,7 +48904,7 @@ GameObject:
   - component: {fileID: 1993202428}
   m_Layer: 8
   m_Name: MedusaEnemy
-  m_TagString: Enemy
+  m_TagString: Medusa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49029,13 +49029,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDropKey: 0
   isDead: 0
+  current_health: 30
   chillSpeed: 1
   positionOfPatrol: 5
   point: {fileID: 1921209916}
   stoppingDistance: 6
   IsShooting: 0
   max_health: 30
-  current_health: 30
   healthBar: {fileID: 128446192}
   groundCheckPos: {fileID: 543681360}
   groundCheckSize: {x: 0.6, y: 0.05}

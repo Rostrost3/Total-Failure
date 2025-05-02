@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
@@ -30,11 +31,7 @@ public class Checkpoint : MonoBehaviour
             playerAttackAndHealth.UpdateCheckpoint(transform.position);
             SaveSystem.SavePosition(playerAttackAndHealth);
             SaveSystem.SavePlayer(playerAttackAndHealth);
-            if (enemies[0].CompareTag("Charon"))
-            {
-                SaveSystem.SaveCharon(enemies[0].GetComponent<CharonMovement>());
-            }
-            else
+            if(enemies.Count > 0)
             {
                 SaveSystem.SaveEnemies(enemies);
             }

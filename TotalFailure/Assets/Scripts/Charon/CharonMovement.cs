@@ -21,7 +21,6 @@ public class CharonMovement : EnemyClass, IDamageable
     public bool IsFrozen = false;
 
     public double max_health;
-    public double current_health;
 
     [SerializeField] private EnemyHealthBar healthBar;
 
@@ -88,6 +87,7 @@ public class CharonMovement : EnemyClass, IDamageable
         Destroy(gameObject);
 
         menu.SetActive(true);
+        Time.timeScale = 0;
     }
 
     void Chill()

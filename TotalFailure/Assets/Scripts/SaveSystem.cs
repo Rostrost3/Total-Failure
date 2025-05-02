@@ -46,9 +46,16 @@ public class SaveSystem : MonoBehaviour
     {
         for (int i = 0; i < enemies.Count; i++)
         {
-            // Сохраняем состояние каждого врага (мёртв или жив)
-            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "Enemy" + i, enemies[i].isDead ? 1 : 0);
-            PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "EnemyKey" + i, enemies[i].isDropKey ? 1 : 0);
+            if(enemies[i] != null)
+            {
+                PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "Enemy" + i, (float)enemies[i].current_health);
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "EnemyKey" + i, enemies[i].isDropKey ? 1 : 0);
+            }
+            else
+            {
+                PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + "Enemy" + i, 0);
+                PlayerPrefs.SetInt(SceneManager.GetActiveScene().name + "EnemyKey" + i, 0);
+            }
         }
         PlayerPrefs.Save();
     }
@@ -84,14 +91,10 @@ public class SaveSystem : MonoBehaviour
         {
             if (PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "Enemy" + i))
             {
-                bool isDead = PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "Enemy" + i) == 1;
+                double currHealth = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + "Enemy" + i);
                 bool isDropKey = PlayerPrefs.GetInt(SceneManager.GetActiveScene().name + "EnemyKey" + i) == 1;
-                enemies[i].isDead = isDead;
+                enemies[i].current_health = currHealth;
                 enemies[i].isDropKey = isDropKey;
-                if (isDead)
-                {
-                    enemies[i].Die(true); // Деактивируем врага, если он мертв
-                }
             }
         }
     }

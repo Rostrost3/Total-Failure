@@ -21043,13 +21043,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDropKey: 0
   isDead: 0
+  current_health: 30
   chillSpeed: 1
   positionOfPatrol: 5
   point: {fileID: 1926174454}
   stoppingDistance: 6
   IsFrozen: 0
   max_health: 30
-  current_health: 30
   healthBar: {fileID: 2063940498}
   groundCheckPos: {fileID: 1211979601}
   groundCheckSize: {x: 0.5, y: 0.05}
@@ -21320,7 +21320,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1.28, y: 4.2829213}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 1
 --- !u!212 &1921892499
 SpriteRenderer:
   m_ObjectHideFlags: 0

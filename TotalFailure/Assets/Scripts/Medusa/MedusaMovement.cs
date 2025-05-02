@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,6 @@ public class MedusaMovement : EnemyClass, IDamageable
     public bool IsShooting = false;
 
     public double max_health = 10;
-    public double current_health = 10;
 
     [SerializeField] private EnemyHealthBar healthBar;
 

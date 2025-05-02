@@ -8,6 +8,7 @@ public abstract class EnemyClass : MonoBehaviour
 {
     public bool isDropKey = false;
     public bool isDead = false;
+    public double current_health;
 
     public abstract void Die(bool fromLoad = false);
 }
@@ -31,7 +32,6 @@ public class Patroler : EnemyClass, IDamageable //� ����� PlayerAtta
     bool goBack = false;
 
     public double max_health = 10;
-    public double current_health = 10;
     public double damage = 10;
 
     private float timeBtwAttack = 0f;

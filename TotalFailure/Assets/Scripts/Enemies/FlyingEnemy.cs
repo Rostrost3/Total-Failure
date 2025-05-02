@@ -19,7 +19,6 @@ public class FlyingEnemy : EnemyClass, IDamageable //� ����� PlayerA
     public bool goBack = false; // ��������� ����������� � ��������� �����
 
     public double max_health = 10;
-    public double current_health = 10;
     public double damage = 10;
 
     private float timeBtwAttack = 0f;

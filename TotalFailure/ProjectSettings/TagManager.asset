@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Charon
+  - Medusa
   layers:
   - Default
   - TransparentFX

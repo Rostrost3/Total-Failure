@@ -16,6 +16,8 @@ public class DeathMenu : MonoBehaviour
 
     public void PlayAgain()
     {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.SetString("SceneName", SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
