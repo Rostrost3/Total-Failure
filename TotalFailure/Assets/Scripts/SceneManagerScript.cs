@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Rendering;
 using TMPro;
+using System.Threading;
 
 public class SceneManagerScript : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class SceneManagerScript : MonoBehaviour
 
     [SerializeField] private Toggle godModeToggle;
 
+    [SerializeField] public GameObject imagePanel;
+    [SerializeField] public Image imageFrame;
+    [SerializeField] public Sprite firstImage;
+    [SerializeField] public Sprite secondImage;
     public GameObject SettingsMenu;
 
     private void Start()
@@ -25,7 +30,7 @@ public class SceneManagerScript : MonoBehaviour
         resolutions = Screen.resolutions;
         int currentResolutionsIndex = 0;
 
-        for(int i = 0; i < resolutions.Length; i++)
+        for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + "x" + resolutions[i].height;
             options.Add(option);
@@ -49,11 +54,32 @@ public class SceneManagerScript : MonoBehaviour
         godModeToggle.onValueChanged.AddListener(SetGodMode);
     }
 
+    private IEnumerator PlayCutsceneAndStartGame()
+    {
+        imagePanel.SetActive(true);
+        imageFrame.sprite = firstImage;
+
+        yield return new WaitForSeconds(7f);
+
+        imageFrame.sprite = secondImage;
+
+        yield return new WaitForSeconds(7f);
+
+        SceneManager.LoadScene("LVL1.2");
+    }
+
     public void GameStart()
     {
+        if (!SettingsMenu.activeSelf)
+        {
+            SettingsMenu.SetActive(true);
+        }
+
         PlayerPrefs.DeleteAll();
         PlayerPrefs.SetInt("ContinueGame", 0);
-        SceneManager.LoadScene("LVL1.2");
+
+        // Запускаем кат-сцену
+        StartCoroutine(PlayCutsceneAndStartGame());
     }
 
     public void ToSettings()

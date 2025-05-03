@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -18,6 +19,8 @@ public class CharonFireWave : MonoBehaviour
         {
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), charon.GetComponent<Collider2D>());
         }
+
+        
 
         Invoke("DestroyFireWave", lifeTime);
     }
