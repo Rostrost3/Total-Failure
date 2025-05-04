@@ -67,7 +67,7 @@ public class PlayerAttackAndHealth : MonoBehaviour, IDamageable, IHealth, ITakeK
             damage = 10;
         }
         Tuple<float, int, int> info = SaveSystem.LoadInfo();
-        current_health = PlayerPrefs.HasKey("PlayerHealth") ? info.Item1 : max_health;
+        current_health = PlayerPrefs.HasKey("PlayerHealth") && PlayerPrefs.GetString("SceneName") == SceneManager.GetActiveScene().name ? info.Item1 : max_health;
         countOfKeys = PlayerPrefs.HasKey(SceneManager.GetActiveScene().name + "PlayerCountKeys") ? info.Item2 : 0;
         CountOfShots = PlayerPrefs.HasKey("PlayerCountShots") ? info.Item3 : 5;
         fill = (float)(current_health / max_health);
