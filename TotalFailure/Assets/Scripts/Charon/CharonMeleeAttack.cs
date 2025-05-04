@@ -10,7 +10,7 @@ public class CharonMeeleAttack : MonoBehaviour
     public int damage = 8;
     public GameObject player;
     public Transform attackPos;
-    //public Animator animator;
+    public Animator animator;
 
     public CharonMovement charon;
 
@@ -29,9 +29,11 @@ public class CharonMeeleAttack : MonoBehaviour
 
     IEnumerator MeleeAttack()
     {
-        //animator.SetTrigger("Attack");
+        animator.SetBool("attack", true);
 
         yield return new WaitForSeconds(attackDelay);
+
+        animator.SetBool("attack", false);
 
         if (Vector2.Distance(attackPos.position, player.transform.position) < attackRange)
         {

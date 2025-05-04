@@ -20884,6 +20884,7 @@ GameObject:
   - component: {fileID: 1889586297}
   - component: {fileID: 1889586298}
   - component: {fileID: 1889586290}
+  - component: {fileID: 1889586299}
   m_Layer: 8
   m_Name: CharonEnemy
   m_TagString: Charon
@@ -21014,7 +21015,7 @@ MonoBehaviour:
   healthBar: {fileID: 2063940498}
   groundCheckPos: {fileID: 1211979601}
   groundCheckSize: {x: 0.5, y: 0.05}
-  animator: {fileID: 0}
+  animator: {fileID: 1889586299}
   menu: {fileID: 1791124858}
 --- !u!114 &1889586295
 MonoBehaviour:
@@ -21033,6 +21034,7 @@ MonoBehaviour:
   damage: 8
   player: {fileID: 1980611742}
   attackPos: {fileID: 1285708246}
+  animator: {fileID: 1889586299}
   charon: {fileID: 1889586294}
 --- !u!114 &1889586296
 MonoBehaviour:
@@ -21114,6 +21116,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.070791, y: 13.268556}
   m_EdgeRadius: 0
+--- !u!95 &1889586299
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889586286}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2e5c2a9f4a993754e90f631a4dbeb220, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1903589835
 GameObject:
   m_ObjectHideFlags: 0
